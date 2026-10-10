@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Nursing OS | Keynote</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --apple-curve: cubic-bezier(0.16, 1, 0.3, 1);
+            --apple-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        html, body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow: hidden; 
+            width: 100vw;
+            height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Apple-Grade Clean Typography Gradients with Safe Descender Padding */
+        .gradient-silver,
+        .gradient-blue,
+        .gradient-orange,
+        .gradient-green,
+        .gradient-cyan,
+        .gradient-dark {
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            color: transparent !important;
+            display: inline-block;
+            padding-bottom: 0.25em !important;
+            margin-bottom: -0.25em !important;
+            line-height: 1.3 !important;
+            vertical-align: top;
+            overflow: visible !important;
+        }
+
+        .gradient-silver {
+            background: linear-gradient(180deg, #ffffff 30%, #a1a1aa 100%);
+        }
+
+        .gradient-blue {
+            background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+        }
+
+        .gradient-orange {
+            background: linear-gradient(135deg, #fed7aa 0%, #f97316 60%, #ea580c 100%);
+        }
+
+        .gradient-green {
+            background: linear-gradient(135deg, #bbf7d0 0%, #22c55e 60%, #16a34a 100%);
+        }
+
+        .gradient-cyan {
+            background: linear-gradient(135deg, #a5f3fc 0%, #06b6d4 100%);
+        }
+
+        .gradient-dark {
+            background: linear-gradient(180deg, #18181b 20%, #52525b 100%);
+        }
+
+        /* Typography Descender Safeguards across all headings */
+        h1, h2, h3, h4 {
+            line-height: 1.3 !important;
+            padding-bottom: 0.15em !important;
+            overflow: visible !important;
+        }
+
+        /* Deck & Slide Architecture */
+        .deck-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000000;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: clamp(1rem, 3.5vh, 2.5rem) clamp(1.5rem, 4vw, 3.5rem) clamp(2.5rem, 5vh, 4rem) clamp(1.5rem, 4vw, 3.5rem);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: scale(1.02);
+            filter: blur(6px);
+            transition: opacity 0.45s var(--apple-curve), transform 0.45s var(--apple-curve), filter 0.45s var(--apple-curve);
+            z-index: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .slide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slide > .content-width {
+            margin: auto;
+            max-width: 1320px;
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .slide.active {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            transform: scale(1) !important;
+            filter: blur(0) !important;
+            z-index: 10;
+        }
+
+        /* Slide Themes */
+        .slide.theme-black {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .slide.theme-white {
+            background-color: #ffffff;
+            color: #18181b;
+        }
+        .slide.theme-white .text-zinc-400,
+        .slide.theme-white .text-slate-400 {
+            color: #52525b !important;
+        }
+        .slide.theme-white .text-white {
+            color: #09090b !important;
+        }
+
+        .slide.theme-graphite {
+            background: linear-gradient(180deg, #111114 0%, #09090b 100%);
+            color: #ffffff;
+        }
+
+        .slide.theme-charcoal {
+            background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
+            color: #ffffff;
+        }
+
+        /* Slide 17: Organic Full-Screen Burgundy Glow */
+        .slide.theme-burgundy-pulse {
+            background-color: #000000 !important;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+        }
+
+        .burgundy-ambient-glow {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(131, 0, 38, 0.85) 0%, rgba(82, 1, 25, 0.45) 38%, rgba(20, 0, 6, 0.15) 60%, rgba(0, 0, 0, 0) 75%);
+            animation: pulseBurgundyGlow 4s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes pulseBurgundyGlow {
+            0% {
+                transform: scale(0.94);
+                opacity: 0.65;
+            }
+            50% {
+                transform: scale(1.06);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+        }
+
+        .slide.theme-burgundy-pulse > .content-width {
+            margin: auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Panels */
+        .panel-matte-dark {
+            background: rgba(18, 18, 22, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+        }
+
+        .panel-light {
+            background: #f4f4f5;
+            border: 1px solid #e4e4e7;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Reveals & Sub-Steps */
+        .reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s var(--apple-curve);
+        }
+
+        .sub-step {
+            opacity: 0;
+            transform: translateY(14px);
+            filter: blur(4px);
+            transition: opacity 0.4s var(--apple-curve), transform 0.4s var(--apple-curve), filter 0.4s var(--apple-curve);
+            pointer-events: none;
+        }
+
+        .sub-step.revealed {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            filter: blur(0) !important;
+            pointer-events: auto !important;
+        }
+
+        /* Slide 2 Dynamic Scale Transition */
+        #confession-container {
+            position: relative;
+            width: 100%;
+            transition: all 0.7s var(--apple-spring);
+        }
+
+        .confession-title {
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            font-weight: 900;
+            color: #ffffff;
+            transition: transform 0.75s var(--apple-spring), opacity 0.75s ease, color 0.75s ease;
+            transform-origin: center center;
+            line-height: 1.15;
+        }
+
+        #confession-container.scaled .confession-title {
+            transform: translateY(-24px) scale(0.6);
+            opacity: 0.35;
+            color: #71717a;
+        }
+
+        #beginning-end-hero {
+            opacity: 0;
+            transform: translateY(20px) scale(0.94);
+            filter: blur(8px);
+            transition: all 0.75s var(--apple-spring);
+            pointer-events: none;
+        }
+
+        #confession-container.scaled #beginning-end-hero {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+            pointer-events: auto;
+        }
+
+        .hero-punchline {
+            font-size: clamp(2.4rem, 6vw, 5.2rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        /* Brick Wall of Tasks */
+        .brick-row {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 8px;
+            width: 100%;
+            flex-wrap: nowrap !important;
+        }
+
+        .brick {
+            flex: 1 1 0px;
+            background: #141418;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            padding: clamp(6px, 1.2vh, 10px) clamp(8px, 1vw, 14px);
+            color: #ffffff;
+            font-size: clamp(0.78rem, 0.95vw, 0.95rem);
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+            white-space: nowrap;
+            transition: transform 0.25s var(--apple-curve), border-color 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+        }
+        .brick.w-full {
+            flex: 1 1 100%;
+            width: 100%;
+        }
+        .brick:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* PACED Rigid 5-Column Grid */
+        .paced-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: clamp(8px, 1.5vw, 16px);
+            width: 100%;
+            max-width: 980px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .paced-pill {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #111114;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: clamp(1rem, 2vh, 1.5rem) 0.5rem;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+            transition: transform 0.35s var(--apple-spring);
+        }
+        .paced-pill:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Exact 19.5:9 Phone Mockup */
+        .phone-frame {
+            width: clamp(210px, 19vw, 240px);
+            aspect-ratio: 9 / 19.5;
+            background: #000000;
+            border: 6px solid #27272a;
+            border-radius: 38px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.85), inset 0 0 10px rgba(255,255,255,0.06);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        .phone-island {
+            width: 68px;
+            height: 15px;
+            background: #000000;
+            border-radius: 14px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+        }
+
+        /* ========================================================
+           Desktop Display Frame (Authentic White SharePoint Canvas)
+           ======================================================== */
+        .desktop-stage-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1060px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .desktop-monitor-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            max-height: clamp(250px, 46vh, 450px);
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid #000000;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Bottom gradient fade starting 1/4 from the bottom of the screen down to solid black */
+        .desktop-bottom-fade {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 28%;
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0) 0%, 
+                rgba(0, 0, 0, 0.25) 25%, 
+                rgba(0, 0, 0, 0.75) 65%, 
+                #000000 100%);
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        /* macOS / Desktop Safari Chrome */
+        .desktop-window-bar {
+            background: #1f1f23;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 6px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #a1a1aa;
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .desktop-traffic-lights {
+            display: flex;
+            gap: 6px;
+        }
+        .traffic-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        /* Badge and pill typography - matching base Inter font, un-bolded, natural casing */
+        .kicker-badge {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            letter-spacing: 0.02em;
+            font-weight: 500;
+            text-transform: none;
+        }
+
+        .desktop-url-bar {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 2px 14px;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            font-size: 10px;
+            color: #94a3b8;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Desktop Screen Content Viewport - Authentic White Background */
+        .desktop-screen-content {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #ffffff;
+            color: #18181b;
+            text-align: left;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+
+        .desktop-screen-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .desktop-screen-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .desktop-screen-content::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .desktop-screen-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            object-position: top;
+            background: #ffffff;
+        }
+
+        /* Clean Foreground Card Strip Below Monitor Frame */
+        .desktop-foreground-cards {
+            position: relative;
+            z-index: 30;
+            width: 100%;
+            margin-top: 14px;
+        }
+
+        /* SharePoint In-Browser Authentic Light Components */
+        .sp-top-ribbon {
+            background: #005a36; /* Baptist Health / M365 emerald ribbon */
+            padding: 5px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #ffffff;
+            font-size: 10.5px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            flex-shrink: 0;
+        }
+        .sp-chrome-white {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .sp-command-bar {
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 4px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 10px;
+            color: #475569;
+            font-weight: 500;
+        }
+        .sp-btn-burgundy {
+            background: #830026;
+            color: #ffffff;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 9px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+
+        /* Presenter HUD */
+        .hud {
+            position: absolute;
+            bottom: 0.8rem;
+            left: 2.5rem;
+            right: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            pointer-events: none;
+            font-size: 0.8rem;
+            color: #71717a;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        /* Data Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-table th {
+            text-align: left;
+            padding: 0.75rem 0.9rem;
+            border-bottom: 2px solid rgba(255,255,255,0.12);
+            color: #a1a1aa;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: clamp(0.75rem, 0.9vw, 0.82rem);
+            letter-spacing: 0.08em;
+        }
+        .data-table td {
+            padding: 0.85rem 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRESENTER HUD -->
+    <div class="hud" id="hud-container">
+        <div id="slide-counter" class="text-sm font-semibold tracking-wider">01 / 33</div>
+        <div id="substep-indicator" class="kicker-badge text-[10px] px-2.5 py-0.5 rounded-full border border-sky-400/30 bg-sky-500/10 text-sky-400">Step 0</div>
+        <div>Clicker: &larr; &rarr; / Space | Fullscreen: F</div>
+    </div>
+
+    <div class="deck-container" id="deck">
+
+        <!-- SLIDE 1: Title (PITCH BLACK) -->
+        <section class="slide theme-black active">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <div class="flex justify-center w-full mb-6">
+                        <span class="kicker-badge border border-sky-400/30 bg-sky-500/10 text-sky-400 rounded-full px-4 py-1 text-xs inline-block">
+                            DNV Healthcare Innovation of the Year
+                        </span>
+                    </div>
+                    <h1 class="block w-full text-center text-4xl md:text-6xl lg:text-[70px] font-black tracking-tighter gradient-silver mb-3">
+                        Solving the Healthcare Innovation Paradox:
+                    </h1>
+                    <p class="text-2xl md:text-4xl lg:text-5xl font-bold gradient-blue tracking-tight mb-8">
+                        Putting Charge Nurses Back in Charge.
+                    </p>
+                    <p class="text-lg md:text-xl font-semibold text-zinc-400 tracking-tight mt-6">
+                        Justin P. Cagulada, BSN, RN, PCCN
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Confession & Dynamic Scale (PITCH BLACK) -->
+        <section class="slide theme-black" id="slide-confession">
+            <div class="content-width text-center relative z-10 max-w-4xl mx-auto" id="confession-container">
+                <div class="reveal">
+                    <h2 class="confession-title mb-3">
+                        I have a confession to make...
+                    </h2>
+                </div>
+                
+                <!-- STEP 1: Explodes in massive scale with pure white and electric blue -->
+                <div id="beginning-end-hero" class="sub-step mt-2">
+                    <div class="py-2">
+                        <h1 class="hero-punchline">
+                            <span class="text-white block mb-1">From BEGINNING</span>
+                            <span class="gradient-blue block">all the way to the END.</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Start in the middle (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="block w-full text-center text-5xl md:text-7xl lg:text-[84px] font-black tracking-tighter gradient-dark mb-6">
+                        Let's start in the middle.
+                    </h2>
+                </div>
+                <div class="sub-step">
+                    <p class="text-2xl md:text-4xl font-medium text-zinc-600 tracking-tight max-w-3xl mx-auto leading-relaxed">
+                        Solving the Innovation Paradox.<br>
+                        <span class="gradient-blue font-bold">Empowering Charge Nurses.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SLIDE 4: The Innovation Paradox (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <div class="flex justify-center w-full mb-4">
+                        <span class="kicker-badge border border-orange-500/30 bg-orange-500/10 text-orange-400 rounded-full px-4 py-1 text-xs inline-block">
+                            The Innovation Paradox
+                        </span>
+                    </div>
+                    <h2 class="block w-full text-center text-4xl md:text-6xl lg:text-[68px] font-black tracking-tighter gradient-silver mb-3">
+                        More technology. <span class="gradient-orange">Less time.</span>
+                    </h2>
+                    <p class="text-lg md:text-xl font-medium text-zinc-400 tracking-tight max-w-4xl mx-auto leading-relaxed mb-8">
+                        Technological advancement should expand patient care capacity. Paradoxically, it's pulling nurses away from the bedside.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left">
+                    <div class="panel-matte-dark p-7 rounded-2xl sub-step border-t-4 border-t-red-500">
+                        <div class="text-5xl font-black text-red-400 mb-2">60%</div>
+                        <p class="text-xl font-bold text-white mb-1">Shift Forfeited</p>
+                        <p class="text-zinc-400 text-sm md:text-base leading-relaxed font-normal">Primary RNs lost to disjointed coordination, non-nursing tasks, and charting quicksand.</p>
+                    </div>
+                    <div class="panel-matte-dark p-7 rounded-2xl sub-step border-t-4 border-t-orange-500">
+                        <div class="text-5xl font-black text-orange-400 mb-2">76%</div>
+                        <p class="text-xl font-bold text-white mb-1">Missed Clinical Care</p>
+                        <p class="text-zinc-400 text-sm md:text-base leading-relaxed font-normal">Administrative tasks directly replacing essential direct patient care.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Surveillance (MATTE GRAPHITE) -->
+        <section class="slide theme-graphite">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="block w-full text-center text-4xl md:text-6xl lg:text-[66px] font-black tracking-tighter gradient-silver mb-4">
+                        Technology as a surveillance tool.
+                    </h2>
+                    <p class="text-2xl md:text-3xl font-bold gradient-orange tracking-tight max-w-3xl mx-auto leading-relaxed mb-8">
+                        Reactive, not proactive.
+                    </p>
+                </div>
+                <div class="panel-matte-dark border border-red-500/20 rounded-2xl p-7 max-w-4xl mx-auto">
+                    <div class="space-y-5 text-left">
+                        <div class="flex items-start gap-4 sub-step">
+                            <i class="fa-solid fa-triangle-exclamation text-red-400 text-xl mt-1"></i>
+                            <div>
+                                <p class="text-lg md:text-xl font-bold text-white mb-1"><span class="text-red-400">Knee-Jerk Reactions:</span> New tools, checklists, reeducation.</p>
+                                <p class="text-zinc-400 text-sm md:text-base">Convoluted action plans stacked year after year to surveil failures.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 pt-3 border-t border-white/10 sub-step">
+                            <i class="fa-solid fa-skull-crossbones text-orange-400 text-xl mt-1"></i>
+                            <div>
+                                <p class="text-lg md:text-xl font-bold text-white mb-1"><span class="text-orange-400">The Root Cause:</span> Manual, paper-based operational foundations.</p>
+                                <p class="text-zinc-400 text-sm md:text-base">Unit operations are completely left behind while clinical documentation evolves.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Excel Illusion (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <div class="flex justify-center w-full mb-6">
+                        <span class="kicker-badge border border-zinc-300 text-zinc-600 rounded-full px-4 py-1 text-xs inline-block">
+                            The Excel Illusion
+                        </span>
+                    </div>
+                    <h2 class="block w-full text-center text-4xl md:text-6xl lg:text-[74px] font-black tracking-tighter gradient-dark mb-6">
+                        Emails, Word, Excel<br>are just <span class="gradient-orange">paper on a screen.</span>
+                    </h2>
+                </div>
+                <div class="sub-step">
+                    <p class="text-2xl md:text-3xl font-medium text-zinc-600 tracking-tight max-w-3xl mx-auto leading-relaxed">
+                        Advanced clinical documentation exists, but unit operations are left completely behind.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Wall of Tasks (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center flex flex-col items-center">
+                <div class="reveal mb-5">
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tighter gradient-silver">
+                        The Wall of Administrative Friction.
+                    </h2>
+                    <p class="text-sm md:text-base text-zinc-400 mt-1">What is actually taking Charge Nurses away from the bedside?</p>
+                </div>
+                
+                <div class="w-full max-w-5xl mx-auto space-y-2.5">
+                    <!-- Row 1: Core Operations & Hand-offs (4 Bricks) -->
+                    <div class="brick-row sub-step">
+                        <div class="brick"><i class="fa-solid fa-users text-sky-400 mr-2"></i>Making assignments</div>
+                        <div class="brick"><i class="fa-solid fa-file-lines text-sky-400 mr-2"></i>Resource reports</div>
+                        <div class="brick"><i class="fa-solid fa-handshake text-sky-400 mr-2"></i>Shift Handoffs</div>
+                        <div class="brick"><i class="fa-solid fa-person-walking-arrow-right text-cyan-400 mr-2"></i>Tracking Discharges</div>
+                    </div>
+
+                    <!-- Row 2: Throughput & Clinical Metrics (5 Bricks) -->
+                    <div class="brick-row sub-step">
+                        <div class="brick"><i class="fa-solid fa-bed-pulse text-cyan-400 mr-2"></i>ICU Downgrades</div>
+                        <div class="brick"><i class="fa-solid fa-clock text-cyan-400 mr-2"></i>Observation Status</div>
+                        <div class="brick"><i class="fa-solid fa-shield-virus text-amber-400 mr-2"></i>Quality Metrics</div>
+                        <div class="brick"><i class="fa-solid fa-bandage text-amber-400 mr-2"></i>Wound Tracking</div>
+                        <div class="brick"><i class="fa-solid fa-head-side-mask text-amber-400 mr-2"></i>Isolation Patients</div>
+                    </div>
+
+                    <!-- Row 3: Special Protocols & Staffing (4 Bricks - Fully Balanced) -->
+                    <div class="brick-row sub-step">
+                        <div class="brick"><i class="fa-solid fa-file-signature text-amber-400 mr-2"></i>DNR list</div>
+                        <div class="brick"><i class="fa-solid fa-user-shield text-amber-400 mr-2"></i>Sitter Management</div>
+                        <div class="brick"><i class="fa-solid fa-star text-amber-400 mr-2"></i>VIP Patients</div>
+                        <div class="brick"><i class="fa-solid fa-scale-balanced text-amber-400 mr-2"></i>Staffing Justifications</div>
+                    </div>
+
+                    <!-- Row 4: Red Kicker -->
+                    <div class="sub-step pt-1 w-full">
+                        <div class="brick w-full justify-center text-center text-red-400 font-bold tracking-normal py-2.5 text-base md:text-lg border-red-500/40 bg-red-950/25">
+                            <i class="fa-solid fa-triangle-exclamation mr-2 text-red-500"></i>An Unlimited Amount of Audits
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: The Drop (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-6xl md:text-8xl lg:text-[105px] font-black tracking-tighter gradient-orange leading-none">
+                        Let's fix all that.
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Resource Companion (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-5xl md:text-7xl lg:text-[84px] font-black tracking-tighter gradient-blue mb-6 leading-none">
+                        The Resource Companion.
+                    </h2>
+                </div>
+                <div class="sub-step">
+                    <p class="text-2xl md:text-3xl font-medium text-zinc-300 tracking-tight max-w-3xl mx-auto leading-relaxed">
+                        A mobile app using the SharePoint ecosystem as a backend to untrap clinical leaders.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: App Features & Authentic Interface Mockup (CHARCOAL GRADIENT) -->
+        <section class="slide theme-charcoal">
+            <div class="content-width">
+                <div class="w-full text-center mb-4 reveal">
+                    <div class="flex justify-center w-full mb-2">
+                        <span class="kicker-badge border border-sky-500/30 text-sky-400 rounded-full px-4 py-1 text-xs inline-block">
+                            Core App Features
+                        </span>
+                    </div>
+                    <h2 class="block w-full text-center text-3xl md:text-5xl font-bold tracking-tighter gradient-silver mb-1">
+                        3 Core Operational Functions
+                    </h2>
+                    <p class="text-xs md:text-sm text-zinc-400">A SharePoint digital ecosystem built by nurses, for EVERYONE.</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-6 max-w-5xl mx-auto">
+                    <!-- Accurate 19.5:9 Phone Mockup (Mirroring Actual 4 Clarke Resource Companion Screen Recording) -->
+                    <div class="phone-frame shadow-2xl">
+                        <div class="phone-island"></div>
+                        <div class="pt-5 px-3.5 pb-1 flex justify-between text-[10px] text-zinc-300 font-semibold bg-[#830026]">
+                            <span>12:05</span>
+                            <div class="flex gap-1.5"><i class="fa-solid fa-wifi text-[9px]"></i><i class="fa-solid fa-battery-full text-[9px]"></i></div>
+                        </div>
+                        <div class="bg-[#830026] text-white px-3 py-1.5 border-b border-white/10 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                                <span class="text-[11px] font-bold tracking-tight">4 Clarke Resource Companion</span>
+                            </div>
+                            <i class="fa-solid fa-ellipsis-vertical text-[10px]"></i>
+                        </div>
+                        <div class="grid grid-cols-3 bg-[#520119] text-[8.5px] font-bold text-center border-b border-white/10">
+                            <div class="py-1 text-zinc-400">Escalations</div>
+                            <div class="py-1 text-zinc-400">SOS</div>
+                            <div class="py-1 text-white bg-[#830026] border-b-2 border-white">Discharges &amp; Downgrades</div>
+                        </div>
+                        <div class="p-2 bg-zinc-950 flex-1 flex flex-col justify-between text-left overflow-hidden font-sans">
+                            <div class="space-y-2">
+                                <div>
+                                    <div class="flex justify-between items-center text-[9px] font-bold text-emerald-400 uppercase tracking-wider mb-1 px-1">
+                                        <span>Discharges</span>
+                                        <i class="fa-solid fa-plus text-[8px] bg-emerald-500/20 p-0.5 rounded"></i>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="p-1.5 rounded-lg bg-zinc-900 border border-emerald-500/20 flex justify-between items-start">
+                                            <div class="pr-1">
+                                                <p class="text-[8.5px] font-bold text-white">Discharge • SNF placement</p>
+                                                <p class="text-[7.5px] text-zinc-400 leading-tight">BM, decomp liver cirrhosis, IV abx (UTI)</p>
+                                            </div>
+                                            <span class="text-[9px] font-bold text-emerald-400 bg-emerald-950/60 px-1 py-0.5 rounded">4428</span>
+                                        </div>
+                                        <div class="p-1.5 rounded-lg bg-zinc-900 border border-emerald-500/20 flex justify-between items-start">
+                                            <div class="pr-1">
+                                                <p class="text-[8.5px] font-bold text-white">Discharge • Obs 24hr</p>
+                                                <p class="text-[7.5px] text-zinc-400 leading-tight">S.o.b, pleural effusion, O2 walk pass</p>
+                                            </div>
+                                            <span class="text-[9px] font-bold text-emerald-400 bg-emerald-950/60 px-1 py-0.5 rounded">4429</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between items-center text-[9px] font-bold text-sky-400 uppercase tracking-wider mb-1 px-1">
+                                        <span>Downgrades (Stepdown &rarr; Tele)</span>
+                                        <i class="fa-solid fa-plus text-[8px] bg-sky-500/20 p-0.5 rounded"></i>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="p-1.5 rounded-lg bg-zinc-900 border border-sky-500/20 flex justify-between items-start">
+                                            <div class="pr-1">
+                                                <p class="text-[8.5px] font-bold text-white">Stepdown &rarr; Telemetry</p>
+                                                <p class="text-[7.5px] text-zinc-400 leading-tight">HD/AKI/HF/ BIPAP HS/ monitor HR</p>
+                                            </div>
+                                            <span class="text-[9px] font-bold text-sky-400 bg-sky-950/60 px-1 py-0.5 rounded">4405</span>
+                                        </div>
+                                        <div class="p-1.5 rounded-lg bg-zinc-900 border border-sky-500/20 flex justify-between items-start">
+                                            <div class="pr-1">
+                                                <p class="text-[8.5px] font-bold text-white">Stepdown &rarr; Telemetry</p>
+                                                <p class="text-[7.5px] text-zinc-400 leading-tight">S/p Pacemaker removal, IV antibiotics</p>
+                                            </div>
+                                            <span class="text-[9px] font-bold text-sky-400 bg-sky-950/60 px-1 py-0.5 rounded">4407</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between items-center text-[9px] font-bold text-sky-400 uppercase tracking-wider mb-1 px-1">
+                                        <span>Downgrades (Stepdown &rarr; Tele)</span>
+                                        <i class="fa-solid fa-plus text-[8px] bg-sky-500/20 p-0.5 rounded"></i>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="p-1.5 rounded-lg bg-zinc-900 border border-sky-500/20 flex justify-between items-start">
+                                            <div class="pr-1">
+                                                <p class="text-[8.5px] font-bold text-white">Stepdown &rarr; Telemetry</p>
+                                                <p class="text-[7.5px] text-zinc-400 leading-tight">HD/AKI/HF/ BIPAP HS/ monitor HR</p>
+                                            </div>
+                                            <span class="text-[9px] font-mono font-black text-sky-400 bg-sky-950/60 px-1 py-0.5 rounded">4405</span>
+                                        </div>
+                                        <div class="p-1.5 rounded-lg bg-zinc-900 border border-sky-500/20 flex justify-between items-start">
+                                            <div class="pr-1">
+                                                <p class="text-[8.5px] font-bold text-white">Stepdown &rarr; Telemetry</p>
+                                                <p class="text-[7.5px] text-zinc-400 leading-tight">S/p Pacemaker removal, IV antibiotics</p>
+                                            </div>
+                                            <span class="text-[9px] font-mono font-black text-sky-400 bg-sky-950/60 px-1 py-0.5 rounded">4407</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-1.5 flex justify-around items-center border-t border-white/10 text-zinc-400">
+                                <i class="fa-solid fa-house text-[11px] text-[#830026]"></i>
+                                <span class="text-[8px] font-semibold text-zinc-500">4 Clarke Cardiac</span>
+                                <i class="fa-solid fa-list-check text-[11px] text-zinc-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3 Vertically Stacked Cards (Reveal Step-by-Step) -->
+                    <div class="flex flex-col gap-3 flex-1 text-left w-full">
+                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-blue-500">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-eye text-sky-400 text-base"></i>
+                                    <h3 class="text-sm md:text-base font-bold text-white">1. Real-Time Visibility</h3>
+                                </div>
+                                <span class="text-[9px] font-bold text-sky-400 uppercase tracking-wider bg-sky-500/10 px-2 py-0.5 rounded">Proactive Decisions</span>
+                            </div>
+                            <p class="text-zinc-300 text-xs leading-relaxed">
+                                <strong class="text-white">Live Operations:</strong> Instant visibility into 2 PM rounds (downgrades, discharges, escalations), quality flags (lines, Foleys, wounds), and active staffing changes.
+                            </p>
+                        </div>
+
+                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-green-500">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-bolt text-emerald-400 text-base"></i>
+                                    <h3 class="text-sm md:text-base font-bold text-white">2. NO CLICK Actions</h3>
+                                </div>
+                                <span class="text-[9px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-2 py-0.5 rounded">Bedside Presence</span>
+                            </div>
+                            <p class="text-zinc-300 text-xs leading-relaxed">
+                                <strong class="text-white">Zero Clerical Drag:</strong> Automated logging for callouts, cancellations, and floats. Automated communications for shift reports, VTE reminders, and PACED escalations.
+                            </p>
+                        </div>
+
+                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-orange-500">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-mobile-screen-button text-orange-400 text-base"></i>
+                                    <h3 class="text-sm md:text-base font-bold text-white">3. The OS in Your Pocket</h3>
+                                </div>
+                                <span class="text-[9px] font-bold text-orange-400 uppercase tracking-wider bg-orange-500/10 px-2 py-0.5 rounded">Agile Flow</span>
+                            </div>
+                            <p class="text-zinc-300 text-xs leading-relaxed">
+                                <strong class="text-white">Point of Care:</strong> Bedside data entry for 2 PM rounds and quality tracking. Agile leader actions for coaching, recognition, and document handling at the bedside.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: PACED Engine Letters (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width">
+                <div class="text-center mb-8 reveal">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tighter gradient-silver mb-2">
+                        The PACED Engine.
+                    </h2>
+                    <p class="text-base text-zinc-400">A cyclic operating rhythm designed explicitly for acute care units.</p>
+                </div>
+                
+                <div class="paced-grid">
+                    <div class="paced-pill sub-step border-t-4 border-t-blue-500">
+                        <p class="text-4xl md:text-5xl font-black text-white mb-1">P</p>
+                        <p class="kicker-badge text-[11px] md:text-xs text-sky-400 text-center">Purposeful</p>
+                    </div>
+                    <div class="paced-pill sub-step border-t-4 border-t-cyan-500 relative">
+                        <p class="text-4xl md:text-5xl font-black text-white mb-1">A</p>
+                        <p class="kicker-badge text-[11px] md:text-xs text-cyan-400 text-center">Automated</p>
+                        <span class="absolute -bottom-6 text-[9px] text-cyan-300 whitespace-nowrap">* AI driven, hopefully in the future</span>
+                    </div>
+                    <div class="paced-pill sub-step border-t-4 border-t-green-500">
+                        <p class="text-4xl md:text-5xl font-black text-white mb-1">C</p>
+                        <p class="kicker-badge text-[11px] md:text-xs text-emerald-400 text-center">Cyclic</p>
+                    </div>
+                    <div class="paced-pill sub-step border-t-4 border-t-yellow-500">
+                        <p class="text-4xl md:text-5xl font-black text-white mb-1">E</p>
+                        <p class="kicker-badge text-[11px] md:text-xs text-amber-400 text-center">Escalations</p>
+                    </div>
+                    <div class="paced-pill sub-step border-t-4 border-t-orange-500">
+                        <p class="text-4xl md:text-5xl font-black text-white mb-1">D</p>
+                        <p class="kicker-badge text-[10px] md:text-[11px] text-orange-400 text-center leading-tight">Decision<br>Making</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: PACED Workflow Explanation (MATTE GRAPHITE) -->
+        <section class="slide theme-graphite">
+            <div class="content-width">
+                <div class="text-center mb-6 reveal">
+                    <div class="flex justify-center w-full mb-3">
+                        <span class="kicker-badge border border-cyan-500/30 text-cyan-400 rounded-full px-4 py-1 text-xs inline-block">
+                            Operational Workflow
+                        </span>
+                    </div>
+                    <h2 class="block w-full text-center text-3xl md:text-5xl font-bold tracking-tighter gradient-silver mb-2">
+                        Explaining the PACED Workflow
+                    </h2>
+                    <p class="text-sm text-zinc-400">Re-engineering unit communication into structured, cyclic decision loops.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto text-left">
+                    <div class="panel-matte-dark p-4 md:p-5 rounded-2xl border-t-4 border-t-cyan-500 sub-step flex flex-col justify-between">
+                        <div>
+                            <div class="text-[10px] font-black text-cyan-400 mb-1.5 uppercase tracking-wider">Automated Triage</div>
+                            <h3 class="text-base md:text-lg font-bold text-white mb-1.5">Early Threshold Detection</h3>
+                            <p class="text-xs text-zinc-300 leading-relaxed">
+                                System alerts immediately identify observation patients approaching critical threshold hours, high-risk downgrades, and Foley flags.
+                            </p>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-white/10 text-[10px] text-cyan-400 font-bold uppercase">
+                            Eliminates fact-finding
+                        </div>
+                    </div>
+                    <div class="panel-matte-dark p-4 md:p-5 rounded-2xl border-t-4 border-t-blue-500 sub-step flex flex-col justify-between">
+                        <div>
+                            <div class="text-[10px] font-black text-sky-400 mb-1.5 uppercase tracking-wider">Multidisciplinary Escalation</div>
+                            <h3 class="text-base md:text-lg font-bold text-white mb-1.5">Cross-Team Prompts</h3>
+                            <p class="text-xs text-zinc-300 leading-relaxed">
+                                Automated Teams prompts notify Case Management and Hospitalists. Active throughput barriers are flagged and resolved early.
+                            </p>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-white/10 text-[10px] text-sky-400 font-bold uppercase">
+                            Replaces phone tag
+                        </div>
+                    </div>
+                    <div class="panel-matte-dark p-4 md:p-5 rounded-2xl border-t-4 border-t-green-500 sub-step flex flex-col justify-between">
+                        <div>
+                            <div class="text-[10px] font-black text-emerald-400 mb-1.5 uppercase tracking-wider">Action Rounds</div>
+                            <h3 class="text-base md:text-lg font-bold text-white mb-1.5">Decisive Floor Touchpoints</h3>
+                            <p class="text-xs text-zinc-300 leading-relaxed">
+                                Standardized rounding mandates concrete clinical decisions: patients are officially downgraded, cleared for discharge, or escalated.
+                            </p>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-white/10 text-[10px] text-emerald-400 font-bold uppercase">
+                            Decisions over delays
+                        </div>
+                    </div>
+                    <div class="panel-matte-dark p-4 md:p-5 rounded-2xl border-t-4 border-t-orange-500 sub-step flex flex-col justify-between">
+                        <div>
+                            <div class="text-[10px] font-black text-orange-400 mb-1.5 uppercase tracking-wider">Decision Handoff</div>
+                            <h3 class="text-base md:text-lg font-bold text-white mb-1.5">Closed-Loop Continuity</h3>
+                            <p class="text-xs text-zinc-300 leading-relaxed">
+                                Structured handoffs feed live shift reports into the ecosystem, reducing redundant follow-ups and sustaining bed throughput.
+                            </p>
+                        </div>
+                        <div class="mt-3 pt-2 border-t border-white/10 text-[10px] text-orange-400 font-bold uppercase">
+                            Slashes Obs LOS to 26.6h
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 13: Slashing LOS (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width">
+                <div class="text-center mb-8 reveal">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tighter gradient-dark">
+                        Slashing Observation LOS.
+                    </h2>
+                    <p class="text-base md:text-lg text-zinc-500 mt-1.5">Acute care capacity unlocked through structured cyclic escalation.</p>
+                </div>
+
+                <div class="max-w-3xl mx-auto space-y-8">
+                    <div class="relative sub-step">
+                        <div class="flex justify-between items-end mb-1.5">
+                            <span class="block text-xl font-bold text-zinc-500">Legacy Baseline</span>
+                            <span class="text-3xl font-black text-zinc-600 tracking-tighter">40.0h</span>
+                        </div>
+                        <div class="relative w-full bg-zinc-200 h-8 rounded-full overflow-hidden border border-zinc-300">
+                            <div class="absolute top-0 left-0 h-full bg-zinc-400 rounded-full race-bar" data-width="100%" style="width: 0%; transition: width 1.4s var(--apple-curve);"></div>
+                        </div>
+                    </div>
+
+                    <div class="relative sub-step">
+                        <div class="flex justify-between items-end mb-1.5">
+                            <span class="block text-2xl font-bold text-zinc-900">Nursing OS Standard</span>
+                            <span class="text-5xl font-black gradient-blue tracking-tighter">26.6h</span>
+                        </div>
+                        <div class="relative w-full bg-zinc-200 h-8 rounded-full overflow-hidden border border-blue-400/40">
+                            <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full race-bar shadow-md" data-width="66.5%" style="width: 0%; transition: width 1.6s var(--apple-curve) 0.2s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 14: The End (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center">
+                <div class="reveal">
+                    <h2 class="text-5xl md:text-8xl lg:text-[96px] font-black tracking-tighter gradient-silver mb-6 leading-none">
+                        The End.
+                    </h2>
+                </div>
+                <div class="max-w-md mx-auto text-left space-y-3">
+                    <div class="sub-step text-xl md:text-2xl font-medium text-zinc-300 flex items-center">
+                        <i class="fa-solid fa-check text-emerald-400 mr-3 text-xl"></i>Charge nurse back in Charge.
+                    </div>
+                    <div class="sub-step text-xl md:text-2xl font-medium text-zinc-300 flex items-center">
+                        <i class="fa-solid fa-arrow-down text-sky-400 mr-3 text-xl"></i>LOS dropped.
+                    </div>
+                    <div class="sub-step text-xl md:text-2xl font-bold text-white pt-3 text-center">
+                        Thank you and goodnight.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 15: One More Thing (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-6xl lg:text-[76px] font-black tracking-tighter gradient-silver leading-tight">
+                        There's one more thing...
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 16: Three Pillars (RE-ARCHITECTED CINEMATIC PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center">
+                <!-- Anchor Header -->
+                <div class="reveal mb-6 text-center">
+                    <div class="flex justify-center w-full mb-2">
+                        <span class="kicker-badge border border-sky-400/30 bg-sky-500/10 text-sky-400 rounded-full px-4 py-1 text-xs inline-block">
+                            The Architecture
+                        </span>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tighter gradient-silver">
+                        Three Connected Pillars.
+                    </h2>
+                </div>
+
+                <!-- 3 Monolithic Obsidian Glass Columns (Preserving 100% of PDF Text) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto text-center">
+                    <!-- Pillar 1: Leadership Console -->
+                    <div class="panel-matte-dark p-6 rounded-2xl sub-step flex flex-col justify-between border-t-2 border-t-amber-500/80 hover:border-amber-400 transition-all">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4 mx-auto shadow-inner">
+                                <i class="fa-solid fa-compass"></i>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-black text-white mb-2">Leadership Console</h3>
+                            <span class="kicker-badge text-[10px] text-amber-300 bg-amber-950/60 border border-amber-500/30 px-2.5 py-0.5 rounded-full inline-block">4 Clarke Leadership - O365</span>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/10 text-xs text-zinc-300 flex justify-around font-medium">
+                            <span><i class="fa-solid fa-user-pen text-amber-400 mr-1.5"></i>CAPs &amp; Memos</span>
+                            <span><i class="fa-solid fa-star text-amber-400 mr-1.5"></i>Audit Recognitions</span>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2: Resource Companion -->
+                    <div class="panel-matte-dark p-6 rounded-2xl sub-step flex flex-col justify-between border-t-2 border-t-sky-500/80 hover:border-sky-400 transition-all shadow-[0_0_40px_rgba(56,189,248,0.12)]">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-xl mb-4 mx-auto shadow-inner">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-black text-white mb-2">Resource Companion</h3>
+                            <span class="kicker-badge text-[10px] text-sky-300 bg-sky-950/60 border border-sky-500/30 px-2.5 py-0.5 rounded-full inline-block">4 Clarke Resource App</span>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/10 text-xs text-zinc-300 flex justify-around font-medium">
+                            <span><i class="fa-solid fa-arrows-spin text-sky-400 mr-1.5"></i>PACED Engine</span>
+                            <span><i class="fa-solid fa-bed-pulse text-sky-400 mr-1.5"></i>2 PM Action Rounds</span>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3: Frontline Portal -->
+                    <div class="panel-matte-dark p-6 rounded-2xl sub-step flex flex-col justify-between border-t-2 border-t-emerald-500/80 hover:border-emerald-400 transition-all">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4 mx-auto shadow-inner">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-black text-white mb-2">Frontline Portal</h3>
+                            <span class="kicker-badge text-[10px] text-emerald-300 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-0.5 rounded-full inline-block">4 Clarke Team - O365</span>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/10 text-xs text-zinc-300 flex justify-around font-medium">
+                            <span><i class="fa-solid fa-file-signature text-emerald-400 mr-1.5"></i>Consents &amp; Forms</span>
+                            <span><i class="fa-solid fa-users text-emerald-400 mr-1.5"></i>AP Daily Shift Report</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Climax Punchlines (Revealed Step-by-Step) -->
+                <div class="sub-step mt-7">
+                    <p class="text-xl md:text-3xl font-bold tracking-tight text-zinc-400">
+                        These are not three separate applications.
+                    </p>
+                </div>
+                <div class="sub-step mt-2">
+                    <h1 class="text-4xl md:text-6xl font-black tracking-tighter gradient-orange">
+                        This is one system.
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 17: Nursing OS Logo (ORGANIC FULL-SCREEN BURGUNDY PULSE) -->
+        <section class="slide theme-burgundy-pulse" id="slide-nursing-os">
+            <div class="burgundy-ambient-glow"></div>
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-6xl md:text-8xl lg:text-[120px] font-black tracking-tighter text-white drop-shadow-[0_0_50px_rgba(131,0,38,0.85)]" style="line-height: 1.3; padding-bottom: 0.25em;">
+                        Nursing OS<span class="text-4xl md:text-5xl align-top text-zinc-400 ml-2">™</span>
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 18: Back to Beginning (CHARCOAL GRADIENT) -->
+        <section class="slide theme-charcoal">
+            <div class="content-width text-center">
+                <div class="reveal">
+                    <h2 class="text-5xl md:text-7xl lg:text-[80px] font-black tracking-tighter gradient-silver leading-tight">
+                        Let's go back to the beginning.
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 19: Origin Story (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center">
+                <div class="reveal">
+                    <div class="flex justify-center w-full mb-6">
+                        <span class="kicker-badge border border-zinc-700 text-zinc-400 rounded-full px-4 py-1 text-xs inline-block">
+                            The Origin Story
+                        </span>
+                    </div>
+                    <h2 class="block w-full text-center text-3xl md:text-5xl font-black tracking-tighter gradient-silver mb-8 leading-tight max-w-4xl mx-auto">
+                        "When I became a supervisor, I felt like I was pushing paper."
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
+                    <div class="panel-matte-dark p-6 rounded-2xl sub-step border-l-4 border-l-red-500">
+                        <p class="text-xl font-bold text-red-400 mb-1.5">4 Redundant Workflows</p>
+                        <p class="text-zinc-400 text-sm">Overlapping manual leader tasks and duplicate records.</p>
+                    </div>
+                    <div class="panel-matte-dark p-6 rounded-2xl sub-step border-l-4 border-l-red-500">
+                        <p class="text-xl font-bold text-red-400 mb-1.5">Filing Cabinets</p>
+                        <p class="text-zinc-400 text-sm">Huge physical paper storage housing forms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 20: Centralization Trap (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width text-center">
+                <div class="reveal mb-5">
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter gradient-dark leading-none">
+                        The "Centralization" Trap.
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto text-left items-center">
+                    <div class="space-y-2.5 font-medium text-zinc-800 text-base md:text-lg">
+                        <div class="panel-light p-3 rounded-xl sub-step flex items-center">
+                            <i class="fa-solid fa-xmark text-red-500 mr-3 text-lg"></i> Excel file in the shared drive
+                        </div>
+                        <div class="panel-light p-3 rounded-xl sub-step flex items-center">
+                            <i class="fa-solid fa-pen text-amber-500 mr-3 text-base"></i> Signed coachings / memos
+                        </div>
+                        <div class="panel-light p-3 rounded-xl sub-step flex items-center">
+                            <i class="fa-solid fa-xmark text-red-500 mr-3 text-lg"></i> Save scanned copies in anecdotal files
+                        </div>
+                        <div class="panel-light p-3 rounded-xl sub-step flex items-center">
+                            <i class="fa-solid fa-xmark text-red-500 mr-3 text-lg"></i> Manual shared drive organization
+                        </div>
+                        <div class="panel-light p-3 rounded-xl sub-step flex items-center">
+                            <i class="fa-solid fa-folder-open text-zinc-500 mr-3 text-base"></i> Paper form organized in filling cabinet
+                        </div>
+                    </div>
+
+                    <div class="panel-light p-4 rounded-2xl border border-zinc-300 sub-step bg-white text-xs text-zinc-700 shadow-md">
+                        <div class="flex items-center justify-between pb-2 border-b border-zinc-200 text-[11px] text-zinc-600 font-semibold">
+                            <span class="flex items-center gap-1.5"><i class="fa-brands fa-windows text-blue-500"></i> Open File - OneDrive Baptist Health</span>
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <div class="py-2 px-1 space-y-1.5 text-zinc-800">
+                            <div class="flex items-center justify-between p-1.5 rounded bg-red-50 border border-red-200 text-red-800 text-[11px]">
+                                <span><i class="fa-regular fa-file-word text-blue-600 mr-1.5"></i>4 Clarke Master Assignment - Copy (3).docx</span>
+                                <span class="text-[9px] text-red-600 font-bold ml-2">OVERWRITE RISK</span>
+                            </div>
+                            <div class="flex items-center justify-between p-1.5 rounded bg-zinc-50 border border-zinc-200 text-[11px]">
+                                <span><i class="fa-regular fa-file-word text-blue-600 mr-1.5"></i>alex performance coaching.docx</span>
+                                <span class="text-[9px] text-zinc-500 font-medium ml-2">Anecdotal File</span>
+                            </div>
+                            <div class="flex items-center justify-between p-1.5 rounded bg-zinc-50 border border-zinc-200 text-[11px]">
+                                <span><i class="fa-regular fa-file-lines text-amber-600 mr-1.5"></i>performance memo.docx</span>
+                                <span class="text-[9px] text-zinc-500 font-medium ml-2">Scanned Copy</span>
+                            </div>
+                            <div class="flex items-center justify-between p-1.5 rounded bg-zinc-50 border border-zinc-200 text-[11px]">
+                                <span><i class="fa-regular fa-file-excel text-emerald-600 mr-1.5"></i>TJC Action Plan 4 Clarke.xlsx</span>
+                                <span class="text-[9px] text-zinc-500 font-medium ml-2">Audit Form</span>
+                            </div>
+                        </div>
+                        <div class="pt-2 text-[9px] text-zinc-500 font-medium border-t border-zinc-200 flex justify-between">
+                            <span>Status: Manual folder sync</span>
+                            <span class="text-red-500 font-bold">Duplicate version conflicts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 21: The Audits (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-6xl lg:text-[72px] font-black tracking-tighter gradient-silver mb-6 leading-tight">
+                        Don't get me started with the audits.
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left mt-4">
+                    <div class="panel-matte-dark border border-red-500/20 rounded-2xl p-6 sub-step">
+                        <p class="text-xl font-bold text-white mb-3">The Process</p>
+                        <ul class="text-zinc-300 text-base space-y-1.5 list-disc pl-5">
+                            <li>Weekly, monthly, quarterly reports.</li>
+                            <li>Interpretation and action planning.</li>
+                        </ul>
+                    </div>
+                    <div class="panel-matte-dark border border-red-500/20 rounded-2xl p-6 sub-step">
+                        <p class="text-xl font-bold text-red-400 mb-3">The Outcome</p>
+                        <p class="text-zinc-300 text-base">Redundant administrative loops, educational follow-ups & 1-on-1s.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 22: Leadership Dashboard (AUTHENTIC WHITE SHAREPOINT CANVAS) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center relative z-10">
+                <!-- Title & Badge at Top -->
+                <div class="reveal mb-3">
+                    <div class="flex justify-center w-full mb-1">
+                        <span class="kicker-badge border border-sky-500/30 text-sky-400 rounded-full px-4 py-0.5 text-[11px] inline-block">
+                            The Leaders' Hub
+                        </span>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tighter gradient-silver">
+                        The Leadership Dashboard.
+                    </h2>
+                </div>
+
+                <!-- Desktop Monitor Stage Frame Starting From Top With 16:10 Ratio & Pure White Interior -->
+                <div class="desktop-stage-wrapper sub-step">
+                    <div class="desktop-monitor-frame">
+                        <!-- macOS Desktop Chrome -->
+                        <div class="desktop-window-bar">
+                            <div class="desktop-traffic-lights">
+                                <span class="traffic-dot dot-red"></span>
+                                <span class="traffic-dot dot-yellow"></span>
+                                <span class="traffic-dot dot-green"></span>
+                            </div>
+                            <div class="desktop-url-bar">
+                                <i class="fa-solid fa-lock text-[8px] mr-1 text-emerald-400"></i> https://baptisthealthit.sharepoint.com/teams/4ClarkeLeadershipGroup-O365
+                            </div>
+                            <div class="text-[10px] text-zinc-400 flex items-center gap-2">
+                                <i class="fa-solid fa-shield-halved text-emerald-400"></i> BHSF Secure
+                            </div>
+                        </div>
+
+                        <!-- Monitor Screen Viewport - Clean White SharePoint Canvas -->
+                        <div class="desktop-screen-content">
+                            <!-- Try loading local screenshot first -->
+                            <img src="leader.png" alt="4 Clarke Leadership Group - O365" onerror="this.style.display='none'; document.getElementById('leader-screen-fallback').style.display='block';">
+
+                            <!-- Pixel-Accurate Light Mode SharePoint Replication from leader.png -->
+                            <div id="leader-screen-fallback" style="display:none;" class="w-full text-left bg-white font-sans text-zinc-900">
+                                <!-- Top Emerald M365 Ribbon -->
+                                <div class="sp-top-ribbon">
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="fa-solid fa-table-cells text-xs"></i>
+                                        <span class="font-bold text-xs tracking-wide">SharePoint</span>
+                                    </div>
+                                    <div class="bg-white/20 rounded px-4 py-0.5 text-[10px] flex items-center gap-2 text-white">
+                                        <i class="fa-solid fa-magnifying-glass text-[9px]"></i> Search this site
+                                    </div>
+                                    <div class="flex items-center gap-2.5 text-xs">
+                                        <i class="fa-regular fa-bell text-xs"></i>
+                                        <i class="fa-solid fa-gear text-xs"></i>
+                                        <span class="w-5 h-5 rounded-full bg-emerald-800 text-white font-bold text-[9px] flex items-center justify-center">JC</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Site Title Header -->
+                                <div class="sp-chrome-white">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-7 h-7 rounded bg-[#830026] text-white flex items-center justify-center text-[10px] font-black shadow-sm">4C</div>
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <span class="font-bold text-zinc-900 text-xs">4 Clarke Leadership Group - O365</span>
+                                                <i class="fa-solid fa-user-group text-[9px] text-zinc-400"></i>
+                                            </div>
+                                            <span class="text-[9px] text-zinc-500">Private group • 11 members</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-[9.5px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded font-bold"><i class="fa-solid fa-circle-check mr-1 text-emerald-600"></i>Published 10/9/2026</span>
+                                </div>
+
+                                <!-- Action Command Bar -->
+                                <div class="sp-command-bar">
+                                    <span class="text-[#830026] font-bold"><i class="fa-solid fa-plus mr-1"></i>New</span>
+                                    <span><i class="fa-solid fa-file-pen mr-1"></i>Page details</span>
+                                    <span><i class="fa-solid fa-chart-simple mr-1"></i>Analytics</span>
+                                </div>
+
+                                <!-- Two-Column SharePoint Body from leader.png -->
+                                <div class="p-3 bg-white grid grid-cols-12 gap-3">
+                                    <!-- Left Section (8 cols) -->
+                                    <div class="col-span-8 space-y-3">
+                                        <!-- 4 Clarke Hero Tiles Grid -->
+                                        <div class="grid grid-cols-3 gap-2">
+                                            <!-- Hero 1: Black Cardiac Shift Report Card -->
+                                            <div class="p-3 rounded-lg bg-black text-white flex flex-col justify-between border border-zinc-300 shadow-sm col-span-1">
+                                                <div class="flex items-center gap-1.5 text-[#830026]">
+                                                    <i class="fa-solid fa-heart-pulse text-lg text-red-500"></i>
+                                                    <span class="text-[10px] font-black tracking-tight text-white uppercase">4 Clarke Cardiac</span>
+                                                </div>
+                                                <div class="my-2">
+                                                    <p class="text-[11px] font-black leading-tight text-white">Resource Shift Report</p>
+                                                </div>
+                                                <span class="text-[8.5px] text-sky-400 font-bold">Learn more &rarr;</span>
+                                            </div>
+
+                                            <!-- Hero 2: Pending CAPs -->
+                                            <div class="p-2.5 rounded-lg bg-zinc-900 text-white flex flex-col justify-between border border-zinc-200 shadow-sm">
+                                                <span class="text-[8px] bg-amber-500/20 text-amber-300 px-1 py-0.5 rounded font-bold uppercase w-max">Active Review</span>
+                                                <div>
+                                                    <p class="text-[10px] font-bold text-white leading-tight">Pending Corrective Actions, Memos</p>
+                                                    <p class="text-[7.5px] text-zinc-400">Coaching logs</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Hero 3: Audit Driven Staff Recognition -->
+                                            <div class="p-2.5 rounded-lg bg-zinc-900 text-white flex flex-col justify-between border border-zinc-200 shadow-sm">
+                                                <span class="text-[8px] bg-emerald-500/20 text-emerald-300 px-1 py-0.5 rounded font-bold uppercase w-max">Recognition</span>
+                                                <div>
+                                                    <p class="text-[10px] font-bold text-white leading-tight">Audit Driven Staff Recognition</p>
+                                                    <p class="text-[7.5px] text-zinc-400">Kudos &amp; Wins</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Unit Red Logbooks Strip matching leader.png -->
+                                        <div class="p-2.5 bg-zinc-50 border border-zinc-200 rounded-lg">
+                                            <p class="text-[9px] font-black text-zinc-700 uppercase tracking-wider mb-2">4 Clarke Logbooks</p>
+                                            <div class="grid grid-cols-3 gap-1.5">
+                                                <div class="sp-btn-burgundy"><i class="fa-solid fa-user-doctor text-[8px]"></i> Stretched RN Log</div>
+                                                <div class="sp-btn-burgundy"><i class="fa-solid fa-arrows-rotate text-[8px]"></i> SD RN Rotation</div>
+                                                <div class="sp-btn-burgundy"><i class="fa-solid fa-phone-slash text-[8px]"></i> Callouts Log</div>
+                                                <div class="sp-btn-burgundy"><i class="fa-solid fa-calendar-xmark text-[8px]"></i> Cancellation Log</div>
+                                                <div class="sp-btn-burgundy"><i class="fa-solid fa-arrow-right-arrow-left text-[8px]"></i> Floating Log</div>
+                                                <div class="sp-btn-burgundy"><i class="fa-solid fa-file-invoice-dollar text-[8px]"></i> Float in for Payroll</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Sidebar (4 cols - Burgundy Theme) matching leader.png -->
+                                    <div class="col-span-4 bg-[#830026] text-white p-2.5 rounded-lg flex flex-col justify-between">
+                                        <div>
+                                            <div class="flex justify-between items-center pb-1.5 border-b border-white/20 mb-2">
+                                                <span class="text-[9.5px] font-black uppercase">Upcoming 4 Clarke Events</span>
+                                                <span class="text-[8px] text-zinc-200">See all</span>
+                                            </div>
+                                            <div class="space-y-1.5 text-[8.5px]">
+                                                <div class="p-1 rounded bg-white/10 flex items-center gap-1.5">
+                                                    <span class="font-bold text-amber-300">OCT 14</span>
+                                                    <span>Leadership Rounds Followup</span>
+                                                </div>
+                                                <div class="p-1 rounded bg-white/10 flex items-center gap-1.5">
+                                                    <span class="font-bold text-amber-300">OCT 20</span>
+                                                    <span>Staff Meeting &amp; Recognitions</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2 pt-2 border-t border-white/20">
+                                            <p class="text-[8px] font-bold uppercase tracking-wider text-zinc-200 mb-1">CAP References</p>
+                                            <div class="flex gap-1 text-[7.5px]">
+                                                <span class="bg-black/30 px-1.5 py-0.5 rounded font-semibold">Word • CAP-Templates</span>
+                                                <span class="bg-black/30 px-1.5 py-0.5 rounded font-semibold">PPT • CAP Presentation</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gradient fade to pure black starting 1/4 from the bottom -->
+                        <div class="desktop-bottom-fade"></div>
+                    </div>
+
+                    <!-- 3 Foreground Cards Below Monitor (Revealed Step-by-Step) -->
+                    <div class="desktop-foreground-cards">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 max-w-5xl mx-auto text-left">
+                            <div class="panel-matte-dark p-4 md:p-5 rounded-2xl sub-step border-t-2 border-t-blue-500 shadow-2xl bg-zinc-900/95 border-white/20">
+                                <p class="text-base md:text-lg font-bold text-sky-400 mb-1.5">Centralized Access</p>
+                                <p class="text-zinc-200 text-sm md:text-base font-medium leading-relaxed">Accessible to Directors &amp; AVPs with complete transparency.</p>
+                            </div>
+                            <div class="panel-matte-dark p-4 md:p-5 rounded-2xl sub-step border-t-2 border-t-green-500 shadow-2xl bg-zinc-900/95 border-white/20">
+                                <p class="text-base md:text-lg font-bold text-emerald-400 mb-1.5">Automated Management</p>
+                                <p class="text-zinc-200 text-sm md:text-base font-medium leading-relaxed">Automated reminders &amp; file management.</p>
+                            </div>
+                            <div class="panel-matte-dark p-4 md:p-5 rounded-2xl sub-step border-t-2 border-t-orange-500 shadow-2xl bg-zinc-900/95 border-white/20">
+                                <p class="text-base md:text-lg font-bold text-orange-400 mb-1.5">Streamlined Work</p>
+                                <p class="text-zinc-200 text-sm md:text-base font-medium leading-relaxed">Coaching, corrective actions, and admin tasks in one place.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 23: Time to Lead (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-5xl md:text-7xl lg:text-[84px] font-black tracking-tighter gradient-silver leading-tight">
+                        We actually had time to LEAD.
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 24: Unexpected Outcome (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width text-center">
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tighter gradient-dark mb-6 leading-tight">
+                        Unexpected Outcome: High administrative efficiency.
+                    </h2>
+                </div>
+                <div class="sub-step">
+                    <p class="text-2xl md:text-3xl font-medium text-zinc-600 tracking-tight max-w-3xl mx-auto leading-relaxed">
+                        Result: Strong team development.
+                    </p>
+                </div>
+                <div class="sub-step mt-6">
+                    <p class="text-3xl md:text-4xl font-bold gradient-green tracking-tight max-w-3xl mx-auto leading-relaxed">
+                        The Next Step: Creating a positive juxtaposition.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 25: Recognition Log (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-5xl md:text-7xl lg:text-[80px] font-black tracking-tighter gradient-green mb-6 leading-none">
+                        The Recognition Log.
+                    </h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto text-left">
+                    <div class="panel-matte-dark rounded-2xl p-6 sub-step border-t-4 border-t-green-500">
+                        <i class="fa-solid fa-star text-2xl text-emerald-400 mb-3"></i>
+                        <p class="text-white text-lg font-bold mb-1.5">Documenting Wins</p>
+                        <p class="text-zinc-400 text-sm">Great catches, proper documentation, patient praise.</p>
+                    </div>
+                    <div class="panel-matte-dark rounded-2xl p-6 sub-step border-t-4 border-t-green-500">
+                        <i class="fa-solid fa-envelope-open-text text-2xl text-emerald-400 mb-3"></i>
+                        <p class="text-white text-lg font-bold mb-1.5">Automated Drafting</p>
+                        <p class="text-zinc-400 text-sm">Auto-generates and sends recognition emails.</p>
+                    </div>
+                    <div class="panel-matte-dark rounded-2xl p-6 sub-step border-t-4 border-t-green-500">
+                        <i class="fa-solid fa-folder-open text-2xl text-emerald-400 mb-3"></i>
+                        <p class="text-white text-lg font-bold mb-1.5">Automated Filing</p>
+                        <p class="text-zinc-400 text-sm">Saves directly to staff anecdotal files.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 26: Evaluation Time (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width text-center">
+                <div class="reveal">
+                    <h2 class="text-5xl md:text-7xl font-black tracking-tighter gradient-dark mb-4 leading-none">
+                        Evaluation Time.
+                    </h2>
+                </div>
+                <div class="sub-step">
+                    <p class="text-2xl md:text-3xl font-medium text-zinc-600 tracking-tight max-w-3xl mx-auto leading-relaxed">
+                        Objective, detailed staff history.
+                    </p>
+                </div>
+                
+                <div class="mt-8 sub-step">
+                    <p class="kicker-badge text-xs text-zinc-500 mb-4">Holistic View</p>
+                    <div class="flex flex-wrap justify-center gap-3 items-center">
+                        <span class="bg-red-50 border border-red-200 text-red-700 px-5 py-2.5 rounded-full text-lg font-bold">Corrective actions</span>
+                        <span class="text-2xl text-zinc-400 font-black">+</span>
+                        <span class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-5 py-2.5 rounded-full text-lg font-bold">Recognitions</span>
+                        <span class="text-2xl text-zinc-400 font-black">+</span>
+                        <span class="bg-sky-50 border border-sky-200 text-sky-700 px-5 py-2.5 rounded-full text-lg font-bold">Patient thank you cards</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 27: Frontline Portal (AUTHENTIC WHITE SHAREPOINT CANVAS) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center">
+                <div class="reveal mb-2">
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tighter gradient-silver mb-1 leading-none">
+                        The Frontline Portal.
+                    </h2>
+                    <p class="text-xs md:text-sm text-zinc-400">Bringing operational clarity to bedside staff and clerks.</p>
+                </div>
+
+                <!-- Desktop Monitor Stage Frame Starting From Top With 16:10 Ratio & Pure White Interior -->
+                <div class="desktop-stage-wrapper sub-step">
+                    <div class="desktop-monitor-frame">
+                        <!-- macOS Desktop Chrome & Interactive View Switcher -->
+                        <div class="desktop-window-bar">
+                            <div class="desktop-traffic-lights">
+                                <span class="traffic-dot dot-red"></span>
+                                <span class="traffic-dot dot-yellow"></span>
+                                <span class="traffic-dot dot-green"></span>
+                            </div>
+                            
+                            <!-- Presenter Interactive Tab Switcher Built Seamlessly in Address Bar -->
+                            <div class="flex items-center gap-2">
+                                <button onclick="switchFrontlineView('portal')" id="btn-portal" class="px-2.5 py-0.5 text-[9px] font-bold rounded bg-[#830026] text-white transition-all">
+                                    <i class="fa-solid fa-house mr-1"></i>Team Portal (frontline.png)
+                                </button>
+                                <button onclick="switchFrontlineView('rounds')" id="btn-rounds" class="px-2.5 py-0.5 text-[9px] font-bold rounded bg-zinc-800 text-zinc-400 hover:text-white transition-all">
+                                    <i class="fa-solid fa-table-list mr-1"></i>2 PM Rounds List (rounds report.png)
+                                </button>
+                            </div>
+
+                            <div class="text-[10px] text-zinc-400 font-semibold tracking-wide">
+                                <i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i>4 Clarke Team
+                            </div>
+                        </div>
+
+                        <!-- Monitor Screen Viewport - Clean White SharePoint Canvas -->
+                        <div class="desktop-screen-content">
+                            <!-- VIEW 1: Team Portal Home (frontline.png replication with white canvas) -->
+                            <div id="frontline-portal-view" class="w-full bg-white text-zinc-900">
+                                <img src="frontline.png" alt="4 Clarke Team - O365" onerror="this.style.display='none'; document.getElementById('frontline-fallback-mockup').style.display='block';">
+                                
+                                <div id="frontline-fallback-mockup" style="display:none;" class="w-full text-left bg-white font-sans">
+                                    <!-- Top Green M365 Ribbon -->
+                                    <div class="sp-top-ribbon">
+                                        <div class="flex items-center gap-2">
+                                            <i class="fa-solid fa-table-cells text-xs"></i>
+                                            <span class="font-bold text-xs tracking-wide">SharePoint</span>
+                                        </div>
+                                        <div class="bg-white/20 rounded px-4 py-0.5 text-[10px] flex items-center gap-2 text-white">
+                                            <i class="fa-solid fa-magnifying-glass text-[9px]"></i> Search this site
+                                        </div>
+                                        <span class="w-5 h-5 rounded-full bg-emerald-800 text-white font-bold text-[8px] flex items-center justify-center">JC</span>
+                                    </div>
+
+                                    <!-- Site Title Header -->
+                                    <div class="sp-chrome-white">
+                                        <div class="flex items-center gap-2.5">
+                                            <div class="w-6 h-6 rounded bg-[#830026] text-white flex items-center justify-center text-[9px] font-bold">4C</div>
+                                            <div>
+                                                <span class="font-bold text-xs text-zinc-900">4 Clarke Team - O365</span>
+                                                <p class="text-[8.5px] text-zinc-500">Private group • 143 members</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-2 text-[9px] text-zinc-600 font-semibold">
+                                            <span class="text-[#830026] border-b-2 border-[#830026] pb-0.5">Home</span>
+                                            <span>Teams</span>
+                                            <span class="font-bold text-[#830026]">2PM Rounds</span>
+                                            <span>AP Shift Report</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Content Canvas from frontline_2.png -->
+                                    <div class="p-3 bg-white grid grid-cols-12 gap-3">
+                                        <!-- Left Columns (9 cols) -->
+                                        <div class="col-span-9 space-y-3">
+                                            <!-- Hero 2 PM Rounds Banner -->
+                                            <div class="w-full rounded-lg bg-zinc-900 text-white p-3 flex items-center justify-center shadow-sm relative overflow-hidden" style="background: linear-gradient(135deg, #18181b 0%, #3f3f46 100%);">
+                                                <div class="bg-[#830026] text-white px-5 py-1.5 rounded text-xs font-black uppercase tracking-wider shadow">
+                                                    2 PM Rounds Report
+                                                </div>
+                                            </div>
+
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <!-- Frequently Used Consent Forms -->
+                                                <div class="p-2.5 bg-zinc-50 border border-zinc-200 rounded-lg">
+                                                    <p class="text-[9px] font-black text-zinc-800 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                                                        <i class="fa-solid fa-file-signature text-[#830026]"></i> Frequently Used Consent Forms
+                                                    </p>
+                                                    <div class="grid grid-cols-2 gap-1 text-[8px] text-zinc-700">
+                                                        <div>• Pacemaker / ICD</div>
+                                                        <div>• Cardioversion</div>
+                                                        <div>• Bronchoscopy</div>
+                                                        <div>• TEE Consent</div>
+                                                        <div>• Cardiac Cath w/ PCI</div>
+                                                        <div>• Moderate Sedation</div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- AP links (Red Square Buttons from frontline.png) -->
+                                                <div class="p-2.5 bg-zinc-50 border border-zinc-200 rounded-lg">
+                                                    <p class="text-[9px] font-black text-zinc-800 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                                                        <i class="fa-solid fa-link text-[#830026]"></i> AP Links
+                                                    </p>
+                                                    <div class="grid grid-cols-3 gap-1">
+                                                        <div class="sp-btn-burgundy justify-center text-[7.5px] p-1 text-center">AP Throughput</div>
+                                                        <div class="sp-btn-burgundy justify-center text-[7.5px] p-1 text-center">MD On-Call</div>
+                                                        <div class="sp-btn-burgundy justify-center text-[7.5px] p-1 text-center">AlertTrac</div>
+                                                        <div class="sp-btn-burgundy justify-center text-[7.5px] p-1 text-center">AP Shift Report</div>
+                                                        <div class="sp-btn-burgundy justify-center text-[7.5px] p-1 text-center">AP Template</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Right Sidebar (3 cols - Employee of the Month & Links) -->
+                                        <div class="col-span-3 bg-[#fdf6f7] border border-red-100 p-2.5 rounded-lg flex flex-col justify-between text-center">
+                                            <div>
+                                                <div class="w-8 h-8 rounded-full bg-[#830026] text-white flex items-center justify-center text-xs font-black mx-auto mb-1 shadow">
+                                                    <i class="fa-solid fa-award"></i>
+                                                </div>
+                                                <p class="text-[8px] font-bold text-zinc-500 uppercase">Employee of the Month</p>
+                                                <p class="text-[9px] font-black text-zinc-900 leading-tight">Francisco Portocarrero</p>
+                                            </div>
+
+                                            <div class="mt-2 pt-2 border-t border-red-200 text-left space-y-1">
+                                                <p class="text-[7.5px] font-black text-zinc-500 uppercase">Helpful Links</p>
+                                                <div class="bg-[#830026] text-white p-1 rounded text-[7.5px] font-bold">Incident Report</div>
+                                                <div class="bg-[#830026] text-white p-1 rounded text-[7.5px] font-bold">Cerner Millenium</div>
+                                                <div class="bg-[#830026] text-white p-1 rounded text-[7.5px] font-bold">Peoplesoft</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- VIEW 2: 2 PM Rounds Report List (rounds report.png replication with white grid) -->
+                            <div id="frontline-rounds-view" style="display:none;" class="w-full bg-white text-zinc-900">
+                                <img src="rounds report.png" alt="2PM Rounds Report" onerror="this.style.display='none'; document.getElementById('rounds-fallback-mockup').style.display='block';">
+                                
+                                <div id="rounds-fallback-mockup" style="display:none;" class="w-full text-left bg-white font-sans p-3">
+                                    <div class="flex justify-between items-center pb-2 mb-2 border-b border-zinc-200">
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-xs font-black text-zinc-900">2PM Rounds Report (Live Database)</span>
+                                            <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">Active Count: 48</span>
+                                        </div>
+                                        <div class="flex gap-1 text-[8.5px]">
+                                            <span class="bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded font-bold">Filter: Downgrade (x)</span>
+                                            <span class="bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded font-bold">Filter: Discharge (x)</span>
+                                        </div>
+                                    </div>
+
+                                    <table class="w-full text-[9px] border-collapse bg-white">
+                                        <thead>
+                                            <tr class="bg-zinc-50 text-zinc-600 border-b border-zinc-200 text-[8px] uppercase font-bold">
+                                                <th class="py-1.5 px-2 text-left">Room</th>
+                                                <th class="py-1.5 px-2 text-left">Level</th>
+                                                <th class="py-1.5 px-2 text-left">Isolation</th>
+                                                <th class="py-1.5 px-2 text-left">Pending Milestones / Labs</th>
+                                                <th class="py-1.5 px-2 text-right">Plan Today</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-zinc-200 text-zinc-800">
+                                            <tr class="hover:bg-zinc-50">
+                                                <td class="py-1.5 px-2 font-bold text-zinc-900">4401</td>
+                                                <td class="py-1.5 px-2"><span class="bg-amber-100 text-amber-800 px-1 py-0.5 rounded font-bold">Stepdown</span></td>
+                                                <td class="py-1.5 px-2"><span class="bg-sky-100 text-sky-800 px-1 py-0.5 rounded font-bold">Airborne</span></td>
+                                                <td class="py-1.5 px-2 text-zinc-600">TB RO, Dermatology consult, Bronchoscopy</td>
+                                                <td class="py-1.5 px-2 text-right text-zinc-400 font-medium">—</td>
+                                            </tr>
+                                            <tr class="hover:bg-zinc-50 bg-sky-50/40">
+                                                <td class="py-1.5 px-2 font-bold text-zinc-900">4405</td>
+                                                <td class="py-1.5 px-2"><span class="bg-amber-100 text-amber-800 px-1 py-0.5 rounded font-bold">Stepdown</span></td>
+                                                <td class="py-1.5 px-2 text-zinc-400">—</td>
+                                                <td class="py-1.5 px-2 text-zinc-700">HD/AKI/HF/ BIPAP HS/ monitor HR</td>
+                                                <td class="py-1.5 px-2 text-right text-blue-700 font-bold">Downgrade (Stepdown &rarr; Tele)</td>
+                                            </tr>
+                                            <tr class="hover:bg-zinc-50 bg-sky-50/40">
+                                                <td class="py-1.5 px-2 font-bold text-zinc-900">4407</td>
+                                                <td class="py-1.5 px-2"><span class="bg-amber-100 text-amber-800 px-1 py-0.5 rounded font-bold">Stepdown</span></td>
+                                                <td class="py-1.5 px-2"><span class="bg-orange-100 text-orange-800 px-1 py-0.5 rounded font-bold">Contact</span></td>
+                                                <td class="py-1.5 px-2 text-zinc-700">S/p Pacemaker removal, IV abx, CHF</td>
+                                                <td class="py-1.5 px-2 text-right text-blue-700 font-bold">Downgrade (Stepdown &rarr; Tele)</td>
+                                            </tr>
+                                            <tr class="hover:bg-zinc-50 bg-sky-50/40">
+                                                <td class="py-1.5 px-2 font-bold text-zinc-900">4408</td>
+                                                <td class="py-1.5 px-2"><span class="bg-amber-100 text-amber-800 px-1 py-0.5 rounded font-bold">Stepdown</span></td>
+                                                <td class="py-1.5 px-2 text-zinc-400">—</td>
+                                                <td class="py-1.5 px-2 text-zinc-700">IVR Renal biopsy on 10/12, EGD (Cardio/Pulmo)</td>
+                                                <td class="py-1.5 px-2 text-right text-blue-700 font-bold">Downgrade (Stepdown &rarr; Tele)</td>
+                                            </tr>
+                                            <tr class="hover:bg-zinc-50 bg-emerald-50/40">
+                                                <td class="py-1.5 px-2 font-bold text-zinc-900">4428</td>
+                                                <td class="py-1.5 px-2"><span class="bg-zinc-100 text-zinc-800 px-1 py-0.5 rounded font-bold">Telemetry</span></td>
+                                                <td class="py-1.5 px-2 text-zinc-400">—</td>
+                                                <td class="py-1.5 px-2 text-zinc-700">BM, decomp liver cirrhosis, IV abx (UTI)</td>
+                                                <td class="py-1.5 px-2 text-right text-emerald-700 font-bold">Discharge • SNF placement</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gradient fade to pure black starting 1/4 from the bottom -->
+                        <div class="desktop-bottom-fade"></div>
+                    </div>
+
+                    <!-- 5 Frontline Text Pills Sitting Cleanly Below the Monitor Frame -->
+                    <div class="desktop-foreground-cards">
+                        <div class="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+                            <div class="panel-matte-dark px-5 py-2.5 md:px-6 md:py-3 rounded-2xl text-white font-bold text-sm md:text-base lg:text-[17px] border border-white/20 bg-zinc-900/95 shadow-xl sub-step">Interdisciplinary rounds data</div>
+                            <div class="panel-matte-dark px-5 py-2.5 md:px-6 md:py-3 rounded-2xl text-white font-bold text-sm md:text-base lg:text-[17px] border border-white/20 bg-zinc-900/95 shadow-xl sub-step">Unit Clerk workflow and reporting</div>
+                            <div class="panel-matte-dark px-5 py-2.5 md:px-6 md:py-3 rounded-2xl text-white font-bold text-sm md:text-base lg:text-[17px] border border-white/20 bg-zinc-900/95 shadow-xl sub-step">Frequent Forms and Consents</div>
+                            <div class="panel-matte-dark px-5 py-2.5 md:px-6 md:py-3 rounded-2xl text-white font-bold text-sm md:text-base lg:text-[17px] border border-white/20 bg-zinc-900/95 shadow-xl sub-step">Unit links</div>
+                            <div class="panel-matte-dark px-6 py-2.5 md:px-7 md:py-3 rounded-2xl border-2 border-sky-400/60 text-sky-300 font-extrabold text-sm md:text-base lg:text-[17px] bg-sky-950/60 shadow-[0_0_20px_rgba(56,189,248,0.25)] sub-step">Automated Report Database</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 28: Transformation (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width text-center">
+                <div class="reveal mb-8">
+                    <h2 class="text-5xl md:text-7xl lg:text-[84px] font-black tracking-tighter gradient-dark leading-none">
+                        The Transformation.
+                    </h2>
+                </div>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6 max-w-4xl mx-auto">
+                    <div class="panel-light p-8 rounded-2xl w-full md:w-1/2 text-left sub-step border-l-4 border-l-zinc-500">
+                        <p class="kicker-badge text-[10px] text-zinc-400 mb-2">FROM</p>
+                        <p class="text-2xl font-black text-zinc-900">A shared drive / database.</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-3xl text-zinc-400 hidden md:block sub-step"></i>
+                    <div class="panel-light border border-sky-500/30 p-8 rounded-2xl w-full md:w-1/2 text-left sub-step border-l-4 border-l-blue-600">
+                        <p class="kicker-badge text-[10px] text-blue-600 mb-2">TO</p>
+                        <p class="text-2xl font-black text-zinc-900">A fully functional Operating System.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 29: Rigorous Evaluation (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width">
+                <div class="text-center mb-7 reveal">
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tighter gradient-dark mb-2.5">
+                        Rigorous Evaluation.
+                    </h2>
+                    <p class="text-sm md:text-base text-zinc-600 font-medium max-w-2xl mx-auto">
+                        Methodology: Pre-intervention Baseline (N=18) vs. Post-intervention Nursing OS (N=16).<br>
+                        Testing: Mann-Whitney U test (1-5 Likert scale).
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div class="panel-light p-7 rounded-2xl text-center sub-step border-t-4 border-t-blue-500">
+                        <p class="kicker-badge text-[10px] text-blue-600 mb-4">System Advocacy</p>
+                        <p class="text-5xl font-black text-zinc-900 flex items-center justify-center gap-3">
+                            <span class="text-3xl text-zinc-400">2.89</span>
+                            <i class="fa-solid fa-arrow-right text-zinc-400 text-xl"></i>
+                            <span class="gradient-blue">4.94<span class="text-2xl text-zinc-400">/5.0</span></span>
+                        </p>
+                    </div>
+                    <div class="panel-light border border-emerald-500/20 p-7 rounded-2xl text-center sub-step flex flex-col justify-center border-t-4 border-t-green-500">
+                        <p class="kicker-badge text-[10px] text-emerald-600 mb-3">The Verdict</p>
+                        <p class="text-lg md:text-xl font-medium text-zinc-900 leading-relaxed">
+                            Statistically significant improvement across all metrics <span class="font-black gradient-green block mt-1.5 text-3xl">p &lt; 0.001</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 30: Availability Table (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width">
+                <div class="reveal mb-5">
+                    <h2 class="text-3xl md:text-4xl font-black tracking-tighter gradient-silver mb-1.5">
+                        Clinical Availability & Admin Automation.
+                    </h2>
+                    <p class="text-sm text-zinc-400">Drastic reduction in widespread workflow friction and improved confidence.</p>
+                </div>
+                
+                <div class="w-full panel-matte-dark rounded-2xl p-5 overflow-x-auto max-w-4xl mx-auto">
+                    <table class="data-table w-full">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">Metric</th>
+                                <th>Pre-Mean</th>
+                                <th class="text-sky-400">Post-Mean</th>
+                                <th class="text-emerald-400">P-Value</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white font-medium">
+                            <tr class="sub-step">
+                                <td>Availability for hands-on clinical support</td>
+                                <td class="text-zinc-500">2.44</td>
+                                <td class="text-sky-400 font-bold">4.31</td>
+                                <td class="text-emerald-400 font-bold">&lt; 0.001</td>
+                            </tr>
+                            <tr class="sub-step">
+                                <td>Task flagging eliminates fact-finding time</td>
+                                <td class="text-zinc-500">2.61</td>
+                                <td class="text-sky-400 font-bold">4.56</td>
+                                <td class="text-emerald-400 font-bold">&lt; 0.001</td>
+                            </tr>
+                            <tr class="sub-step">
+                                <td>Shift report speed & convenience</td>
+                                <td class="text-zinc-500">3.00</td>
+                                <td class="text-sky-400 font-bold">4.88</td>
+                                <td class="text-emerald-400 font-bold">&lt; 0.001</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 31: Friction Table (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width">
+                <div class="reveal mb-5">
+                    <h2 class="text-3xl md:text-4xl font-black tracking-tighter gradient-silver mb-1.5">
+                        Reduced Cognitive Friction.
+                    </h2>
+                    <p class="text-sm text-red-400 font-bold">Negative Indicators (Lower Score = Better)</p>
+                </div>
+                
+                <div class="w-full panel-matte-dark rounded-2xl p-5 overflow-x-auto max-w-4xl mx-auto">
+                    <table class="data-table w-full">
+                        <thead>
+                            <tr>
+                                <th class="w-1/2">Metric</th>
+                                <th>Pre-Mean</th>
+                                <th class="text-emerald-400">Post-Mean</th>
+                                <th class="text-emerald-400">P-Value</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white font-medium">
+                            <tr class="sub-step">
+                                <td>Double-checking logs due to low confidence</td>
+                                <td class="text-red-400 font-bold">3.78</td>
+                                <td class="text-emerald-400 font-bold">2.19</td>
+                                <td class="text-emerald-400 font-bold">&lt; 0.001</td>
+                            </tr>
+                            <tr class="sub-step">
+                                <td>Unpredictable task management escalations</td>
+                                <td class="text-red-400 font-bold">3.67</td>
+                                <td class="text-emerald-400 font-bold">2.13</td>
+                                <td class="text-emerald-400 font-bold">0.001</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 32: The Golden Rule (CERAMIC WHITE) -->
+        <section class="slide theme-white">
+            <div class="content-width text-center">
+                <div class="reveal">
+                    <div class="flex justify-center w-full mb-6">
+                        <span class="kicker-badge border border-orange-500/30 bg-orange-500/10 text-orange-600 rounded-full px-4 py-1 text-xs inline-block">
+                            The Rule of Sustainability
+                        </span>
+                    </div>
+                    <h2 class="block w-full text-center text-3xl md:text-5xl lg:text-[54px] font-bold tracking-tight gradient-dark mb-6 max-w-4xl mx-auto">
+                        Any new project MUST improve or automate an existing process...
+                    </h2>
+                </div>
+                <div class="sub-step">
+                    <p class="text-2xl md:text-3xl font-extrabold text-red-500 tracking-tight">
+                        ...and NEVER add to frontline cognitive workload.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 33: Finale (PITCH BLACK) -->
+        <section class="slide theme-black">
+            <div class="content-width text-center relative z-10">
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-5xl lg:text-[60px] font-black tracking-tighter gradient-silver mb-6 leading-tight max-w-5xl mx-auto">
+                        "We must race technologically forward to take practice humanly backward."
+                    </h2>
+                </div>
+                <div class="text-xl md:text-2xl font-medium text-zinc-400 tracking-tight space-y-2.5">
+                    <p class="sub-step">Back to the bedside.</p>
+                    <p class="sub-step">Back to uninterrupted care.</p>
+                    <p class="sub-step text-white font-bold text-2xl md:text-3xl">Back to the human connection.</p>
+                </div>
+                <div class="sub-step mt-8">
+                    <p class="kicker-badge text-xs text-sky-400 bg-sky-500/10 border border-sky-500/30 px-5 py-1.5 rounded-full inline-block">
+                        Questions &amp; Discussion
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script Engine -->
+    <script>
+        (function() {
+            // Interactive Tab Switcher for Slide 27 (Frontline Portal vs 2 PM Rounds List)
+            window.switchFrontlineView = function(view) {
+                const portalDiv = document.getElementById('frontline-portal-view');
+                const roundsDiv = document.getElementById('frontline-rounds-view');
+                const btnPortal = document.getElementById('btn-portal');
+                const btnRounds = document.getElementById('btn-rounds');
+                if (!portalDiv || !roundsDiv) return;
+                
+                if (view === 'portal') {
+                    portalDiv.style.display = 'block';
+                    roundsDiv.style.display = 'none';
+                    if (btnPortal) {
+                        btnPortal.className = "px-2.5 py-0.5 text-[9px] font-bold rounded bg-[#830026] text-white transition-all";
+                    }
+                    if (btnRounds) {
+                        btnRounds.className = "px-2.5 py-0.5 text-[9px] font-bold rounded bg-zinc-800 text-zinc-400 hover:text-white transition-all";
+                    }
+                } else {
+                    portalDiv.style.display = 'none';
+                    roundsDiv.style.display = 'block';
+                    if (btnRounds) {
+                        btnRounds.className = "px-2.5 py-0.5 text-[9px] font-bold rounded bg-[#830026] text-white transition-all";
+                    }
+                    if (btnPortal) {
+                        btnPortal.className = "px-2.5 py-0.5 text-[9px] font-bold rounded bg-zinc-800 text-zinc-400 hover:text-white transition-all";
+                    }
+                }
+            };
+
+            function startDeck() {
+                const slides = document.querySelectorAll('.slide');
+                const slideCounter = document.getElementById('slide-counter');
+                const substepIndicator = document.getElementById('substep-indicator');
+                const hudContainer = document.getElementById('hud-container');
+                let currentIdx = 0;
+                let isAnimating = false;
+
+                if (!slides || slides.length === 0) return;
+
+                function updateHUD() {
+                    const currentStr = String(currentIdx + 1).padStart(2, '0');
+                    const totalStr = String(slides.length).padStart(2, '0');
+                    if (slideCounter) slideCounter.innerText = `${currentStr} / ${totalStr}`;
+
+                    const activeSlide = slides[currentIdx];
+                    if (!activeSlide || !substepIndicator) return;
+                    
+                    if (activeSlide.classList.contains('theme-white')) {
+                        if (hudContainer) hudContainer.style.color = '#71717a';
+                        if (slideCounter) slideCounter.style.color = '#18181b';
+                    } else {
+                        if (hudContainer) hudContainer.style.color = '#71717a';
+                        if (slideCounter) slideCounter.style.color = '#e4e4e7';
+                    }
+
+                    const allSubsteps = activeSlide.querySelectorAll('.sub-step');
+                    const revealedSubsteps = activeSlide.querySelectorAll('.sub-step.revealed');
+                    if (allSubsteps.length > 0) {
+                        substepIndicator.innerText = `Step ${revealedSubsteps.length} / ${allSubsteps.length}`;
+                        substepIndicator.style.display = 'block';
+                    } else {
+                        substepIndicator.innerText = '';
+                        substepIndicator.style.display = 'none';
+                    }
+                }
+
+                function initSlide(idx) {
+                    if (slides.length === 0) return;
+
+                    const oldSlide = slides[currentIdx];
+                    if (oldSlide) {
+                        oldSlide.classList.remove('active');
+                        oldSlide.querySelectorAll('.sub-step.revealed').forEach(el => el.classList.remove('revealed'));
+                        
+                        const confessionContainer = document.getElementById('confession-container');
+                        if (confessionContainer) confessionContainer.classList.remove('scaled');
+
+                        oldSlide.querySelectorAll('.race-bar').forEach(b => {
+                            b.style.width = '0%';
+                        });
+                    }
+
+                    currentIdx = idx;
+                    updateHUD();
+
+                    const newSlide = slides[currentIdx];
+                    if (newSlide) {
+                        newSlide.classList.add('active');
+
+                        setTimeout(() => {
+                            newSlide.querySelectorAll('.race-bar').forEach(b => {
+                                if (!b.closest('.sub-step')) {
+                                    b.style.width = b.getAttribute('data-width');
+                                }
+                            });
+                        }, 50);
+                    }
+                }
+
+                function nextAction() {
+                    if (isAnimating) return;
+                    const activeSlide = slides[currentIdx];
+                    if (!activeSlide) return;
+
+                    const unrevealed = activeSlide.querySelectorAll('.sub-step:not(.revealed)');
+                    if (unrevealed.length > 0) {
+                        const nextStep = unrevealed[0];
+                        nextStep.classList.add('revealed');
+                        
+                        if (activeSlide.id === 'slide-confession') {
+                            const confessionContainer = document.getElementById('confession-container');
+                            if (confessionContainer) confessionContainer.classList.add('scaled');
+                        }
+
+                        nextStep.querySelectorAll('.race-bar').forEach(b => {
+                            b.style.width = b.getAttribute('data-width');
+                        });
+
+                        updateHUD();
+                        return;
+                    }
+
+                    if (currentIdx >= slides.length - 1) return;
+                    isAnimating = true;
+                    initSlide(currentIdx + 1);
+                    setTimeout(() => { isAnimating = false; }, 350);
+                }
+
+                function prevAction() {
+                    if (isAnimating) return;
+                    const activeSlide = slides[currentIdx];
+                    if (!activeSlide) return;
+
+                    const revealed = activeSlide.querySelectorAll('.sub-step.revealed');
+                    if (revealed.length > 0) {
+                        const lastStep = revealed[revealed.length - 1];
+                        lastStep.classList.remove('revealed');
+
+                        if (activeSlide.id === 'slide-confession') {
+                            const confessionContainer = document.getElementById('confession-container');
+                            if (confessionContainer) confessionContainer.classList.remove('scaled');
+                        }
+
+                        lastStep.querySelectorAll('.race-bar').forEach(b => {
+                            b.style.width = '0%';
+                        });
+
+                        updateHUD();
+                        return;
+                    }
+
+                    if (currentIdx <= 0) return;
+                    isAnimating = true;
+                    initSlide(currentIdx - 1);
+                    setTimeout(() => { isAnimating = false; }, 350);
+                }
+
+                // Keyboard and Clicker listeners
+                window.addEventListener('keydown', (e) => {
+                    switch(e.key) {
+                        case 'ArrowRight':
+                        case 'PageDown':
+                        case ' ':
+                        case 'Enter':
+                        case 'n':
+                        case 'N':
+                            e.preventDefault();
+                            nextAction();
+                            break;
+                        case 'ArrowLeft':
+                        case 'PageUp':
+                        case 'Backspace':
+                        case 'p':
+                        case 'P':
+                            e.preventDefault();
+                            prevAction();
+                            break;
+                        case 'f':
+                        case 'F':
+                            if (!document.fullscreenElement) {
+                                document.documentElement.requestFullscreen().catch(() => {});
+                            } else {
+                                if (document.exitFullscreen) {
+                                    document.exitFullscreen().catch(() => {});
+                                }
+                            }
+                            break;
+                        case 'Home': initSlide(0); break;
+                        case 'End': initSlide(slides.length - 1); break;
+                    }
+                });
+
+                // Left 25% = back, Right 75% = forward
+                document.addEventListener('click', (e) => {
+                    if (e.target.closest('.hud') || e.target.closest('button')) return;
+                    const width = window.innerWidth;
+                    if (e.clientX > width * 0.25) {
+                        nextAction();
+                    } else {
+                        prevAction();
+                    }
+                });
+
+                // Initialize starting state safely
+                initSlide(0);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', startDeck);
+            } else {
+                startDeck();
+            }
+        })();
+    </script>
+</body>
+</html>
