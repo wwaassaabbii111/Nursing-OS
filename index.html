@@ -365,7 +365,7 @@
 
         /* Exact 19.5:9 Phone Mockup */
         .phone-frame {
-            width: clamp(210px, 19vw, 240px);
+            width: clamp(215px, 20vw, 250px);
             aspect-ratio: 9 / 19.5;
             background: #000000;
             border: 6px solid #27272a;
@@ -828,7 +828,7 @@
         </section>
 
         <!-- SLIDE 10: App Features & Authentic Interface Mockup (CHARCOAL GRADIENT) -->
-        <section class="slide theme-charcoal">
+        <section class="slide theme-charcoal" id="slide-features">
             <div class="content-width">
                 <div class="w-full text-center mb-4 reveal">
                     <div class="flex justify-center w-full mb-2">
@@ -843,7 +843,7 @@
                 </div>
 
                 <div class="flex flex-col lg:flex-row items-center justify-center gap-6 max-w-5xl mx-auto">
-                    <!-- Accurate 19.5:9 Phone Mockup -->
+                    <!-- Accurate 19.5:9 Phone Mockup with Dynamic Tabs & Content Views -->
                     <div class="phone-frame shadow-2xl">
                         <div class="phone-island"></div>
                         <div class="pt-5 px-3.5 pb-1 flex justify-between text-[10px] text-zinc-300 font-semibold bg-[#830026]">
@@ -857,12 +857,16 @@
                             </div>
                             <i class="fa-solid fa-ellipsis-vertical text-[10px]"></i>
                         </div>
-                        <div class="grid grid-cols-3 bg-[#520119] text-[8.5px] font-bold text-center border-b border-white/10">
-                            <div class="py-1 text-zinc-400">Escalations</div>
-                            <div class="py-1 text-zinc-400">SOS</div>
-                            <div class="py-1 text-white bg-[#830026] border-b-2 border-white">Discharges &amp; Downgrades</div>
+                        
+                        <!-- Dynamic Header Tabs -->
+                        <div class="grid grid-cols-3 bg-[#520119] text-[8.5px] font-bold text-center border-b border-white/10 cursor-pointer select-none">
+                            <div id="tab-btn-escalations" onclick="setPhoneView('escalations')" class="py-1 text-zinc-400 transition-colors">Escalations</div>
+                            <div id="tab-btn-sos" onclick="setPhoneView('sos')" class="py-1 text-zinc-400 transition-colors">SOS</div>
+                            <div id="tab-btn-discharges" onclick="setPhoneView('discharges')" class="py-1 text-white bg-[#830026] border-b-2 border-white transition-colors">Discharges &amp; Downgrades</div>
                         </div>
-                        <div class="p-2 bg-zinc-950 flex-1 flex flex-col justify-between text-left overflow-hidden font-sans">
+
+                        <!-- TAB VIEW 1: Discharges & Downgrades (Step 1 - Real-Time Visibility) -->
+                        <div id="phone-view-discharges" class="phone-view p-2 bg-zinc-950 flex-1 flex flex-col justify-between text-left overflow-hidden font-sans">
                             <div class="space-y-2">
                                 <div>
                                     <div class="flex justify-between items-center text-[9px] font-bold text-emerald-400 uppercase tracking-wider mb-1 px-1">
@@ -917,11 +921,165 @@
                                 <i class="fa-solid fa-list-check text-[11px] text-zinc-400"></i>
                             </div>
                         </div>
+
+                        <!-- TAB VIEW 2: SOS (Step 2 - 3 Structured Sections: Central Lines, Indwelling Catheters, Restraints) -->
+                        <div id="phone-view-sos" class="phone-view p-2 bg-zinc-950 flex-1 flex flex-col justify-between text-left overflow-y-auto font-sans" style="display: none; scrollbar-width: none;">
+                            <div class="space-y-1.5">
+                                <!-- SECTION 1: Central Lines -->
+                                <div>
+                                    <div class="flex justify-between items-center text-[8.5px] font-bold text-amber-400 uppercase tracking-wider mb-0.5 px-0.5">
+                                        <span class="flex items-center gap-1"><i class="fa-solid fa-syringe text-[8px]"></i> Central Lines</span>
+                                        <span class="text-[7.5px] bg-amber-500/20 text-amber-300 px-1 rounded">1 Active</span>
+                                    </div>
+                                    <div class="p-1.5 rounded bg-zinc-900/90 border border-amber-500/25 text-[7.5px] text-zinc-300 space-y-0.5">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-bold text-white text-[8px]">Smith, J.</span>
+                                            <span class="text-[8px] font-mono font-bold text-amber-400 bg-amber-950/60 px-1 rounded">4402</span>
+                                        </div>
+                                        <div class="flex justify-between text-zinc-400">
+                                            <span>Ins: <strong class="text-zinc-200">10/22</strong> (Triple Lumen)</span>
+                                            <span class="text-amber-300">Day 4</span>
+                                        </div>
+                                        <p class="text-zinc-300 leading-tight"><strong>For:</strong> Poor peripheral access &bull; TPN</p>
+                                        <p class="text-emerald-400 font-semibold leading-tight"><strong>Plan:</strong> D/C 10/27 post-abx completion</p>
+                                    </div>
+                                </div>
+
+                                <!-- SECTION 2: Indwelling Catheters -->
+                                <div>
+                                    <div class="flex justify-between items-center text-[8.5px] font-bold text-red-400 uppercase tracking-wider mb-0.5 px-0.5">
+                                        <span class="flex items-center gap-1"><i class="fa-solid fa-droplet text-[8px]"></i> Indwelling Catheters</span>
+                                        <span class="text-[7.5px] bg-red-500/20 text-red-300 px-1 rounded">1 Active</span>
+                                    </div>
+                                    <div class="p-1.5 rounded bg-zinc-900/90 border border-red-500/25 text-[7.5px] text-zinc-300 space-y-0.5">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-bold text-white text-[8px]">Gomez, M.</span>
+                                            <span class="text-[8px] font-mono font-bold text-red-400 bg-red-950/60 px-1 rounded">4416</span>
+                                        </div>
+                                        <div class="flex justify-between text-zinc-400">
+                                            <span>Ins: <strong class="text-zinc-200">10/24</strong> (Foley 16 Fr)</span>
+                                            <span class="text-red-300">Day 2</span>
+                                        </div>
+                                        <p class="text-zinc-300 leading-tight"><strong>For:</strong> Urinary retention &bull; Strict I&amp;O</p>
+                                        <p class="text-emerald-400 font-semibold leading-tight"><strong>Plan:</strong> Trial of void today 14:00 post-Lasix</p>
+                                    </div>
+                                </div>
+
+                                <!-- SECTION 3: Restraints & Safety -->
+                                <div>
+                                    <div class="flex justify-between items-center text-[8.5px] font-bold text-sky-400 uppercase tracking-wider mb-0.5 px-0.5">
+                                        <span class="flex items-center gap-1"><i class="fa-solid fa-user-shield text-[8px]"></i> Restraints &amp; Safety</span>
+                                        <span class="text-[7.5px] bg-sky-500/20 text-sky-300 px-1 rounded">1 Active</span>
+                                    </div>
+                                    <div class="p-1.5 rounded bg-zinc-900/90 border border-sky-500/25 text-[7.5px] text-zinc-300 space-y-0.5">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-bold text-white text-[8px]">Alvarez, R.</span>
+                                            <span class="text-[8px] font-mono font-bold text-sky-400 bg-sky-950/60 px-1 rounded">4421</span>
+                                        </div>
+                                        <div class="flex justify-between text-zinc-400">
+                                            <span>Ins: <strong class="text-zinc-200">10/25</strong> (Bilateral Soft Wrist)</span>
+                                            <span class="text-sky-300">Order Q24H</span>
+                                        </div>
+                                        <p class="text-zinc-300 leading-tight"><strong>For:</strong> Airway safety &bull; Pulling telemetry leads</p>
+                                        <p class="text-emerald-400 font-semibold leading-tight"><strong>Plan:</strong> Wean on day shift with 1:1 sitter trial</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-1 flex justify-around items-center border-t border-white/10 text-zinc-400 mt-1">
+                                <i class="fa-solid fa-house text-[10px] text-[#830026]"></i>
+                                <span class="text-[7.5px] font-semibold text-zinc-400">SOS Device Tracker</span>
+                                <i class="fa-solid fa-list-check text-[10px] text-zinc-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- TAB VIEW 3: Escalations (Step 3 - Segregated Inpatient & Obs, Clear Going-Home Criteria) -->
+                        <div id="phone-view-escalations" class="phone-view p-2 bg-zinc-950 flex-1 flex flex-col justify-between text-left overflow-y-auto font-sans" style="display: none; scrollbar-width: none;">
+                            <div class="space-y-1.5">
+                                <!-- Inpatient vs Observation Sub-Switch -->
+                                <div class="grid grid-cols-2 gap-1 bg-zinc-900 p-0.5 rounded text-[8px] font-bold text-center border border-white/10">
+                                    <button type="button" id="subtab-inpatient-btn" onclick="switchEscalationSubTab('inpatient')" class="py-1 rounded bg-[#830026] text-white">Inpatient</button>
+                                    <button type="button" id="subtab-obs-btn" onclick="switchEscalationSubTab('obs')" class="py-1 rounded text-zinc-400 hover:text-white">Observation</button>
+                                </div>
+
+                                <!-- SUB-VIEW A: Inpatient -->
+                                <div id="escalation-subview-inpatient" class="space-y-1.5">
+                                    <!-- Inpatient Card 1 -->
+                                    <div class="p-1.5 rounded bg-zinc-900/90 border border-sky-500/30 text-[7.5px] space-y-0.5">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-bold text-white text-[8px]">Davis, R.</span>
+                                            <span class="text-[8px] font-mono font-bold text-sky-400 bg-sky-950/60 px-1 rounded">4410</span>
+                                        </div>
+                                        <p class="text-amber-300 leading-tight">
+                                            <strong>Pending:</strong> Echo report sign-off &bull; Cardiology clearance
+                                        </p>
+                                        <div class="p-1 bg-emerald-950/40 border border-emerald-500/30 rounded text-emerald-300 leading-tight">
+                                            <i class="fa-solid fa-house-chimney text-[7px] mr-0.5 text-emerald-400"></i>
+                                            <strong>Needed to go home:</strong> EF > 45% confirmed &amp; outpatient follow-up set
+                                        </div>
+                                    </div>
+
+                                    <!-- Inpatient Card 2 -->
+                                    <div class="p-1.5 rounded bg-zinc-900/90 border border-sky-500/30 text-[7.5px] space-y-0.5">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-bold text-white text-[8px]">Martinez, C.</span>
+                                            <span class="text-[8px] font-mono font-bold text-sky-400 bg-sky-950/60 px-1 rounded">4424</span>
+                                        </div>
+                                        <p class="text-amber-300 leading-tight">
+                                            <strong>Pending:</strong> Nephrology consult note &bull; Stable AM BMP
+                                        </p>
+                                        <div class="p-1 bg-emerald-950/40 border border-emerald-500/30 rounded text-emerald-300 leading-tight">
+                                            <i class="fa-solid fa-house-chimney text-[7px] mr-0.5 text-emerald-400"></i>
+                                            <strong>Needed to go home:</strong> Potassium &lt; 5.0 &amp; oral Lasix script filled
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- SUB-VIEW B: Observation -->
+                                <div id="escalation-subview-obs" class="space-y-1.5" style="display: none;">
+                                    <!-- Obs Card 1 -->
+                                    <div class="p-1.5 rounded bg-zinc-900/90 border border-orange-500/30 text-[7.5px] space-y-0.5">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-bold text-white text-[8px]">Johnson, K. (Obs 18h)</span>
+                                            <span class="text-[8px] font-mono font-bold text-orange-400 bg-orange-950/60 px-1 rounded">4415</span>
+                                        </div>
+                                        <p class="text-amber-300 leading-tight">
+                                            <strong>Pending:</strong> Stable AM Troponin &bull; Hospitalist review
+                                        </p>
+                                        <div class="p-1 bg-emerald-950/40 border border-emerald-500/30 rounded text-emerald-300 leading-tight">
+                                            <i class="fa-solid fa-house-chimney text-[7px] mr-0.5 text-emerald-400"></i>
+                                            <strong>Needed to go home:</strong> Serial enzymes flat &bull; Stress test scheduled
+                                        </div>
+                                    </div>
+
+                                    <!-- Obs Card 2 -->
+                                    <div class="p-1.5 rounded bg-zinc-900/90 border border-orange-500/30 text-[7.5px] space-y-0.5">
+                                        <div class="flex justify-between items-center">
+                                            <span class="font-bold text-white text-[8px]">Patel, E. (Obs 21h)</span>
+                                            <span class="text-[8px] font-mono font-bold text-orange-400 bg-orange-950/60 px-1 rounded">4429</span>
+                                        </div>
+                                        <p class="text-amber-300 leading-tight">
+                                            <strong>Pending:</strong> PT walk pass on room air &bull; O2 test
+                                        </p>
+                                        <div class="p-1 bg-emerald-950/40 border border-emerald-500/30 rounded text-emerald-300 leading-tight">
+                                            <i class="fa-solid fa-house-chimney text-[7px] mr-0.5 text-emerald-400"></i>
+                                            <strong>Needed to go home:</strong> Room air walk > 92% &amp; discharge order placed
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-1 flex justify-around items-center border-t border-white/10 text-zinc-400 mt-1">
+                                <i class="fa-solid fa-house text-[10px] text-[#830026]"></i>
+                                <span class="text-[7.5px] font-semibold text-zinc-400">Discharge Readiness Hub</span>
+                                <i class="fa-solid fa-list-check text-[10px] text-zinc-400"></i>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- 3 Vertically Stacked Cards -->
+                    <!-- 3 Vertically Stacked Cards (Card 1 reveals Discharges, Card 2 reveals SOS, Card 3 reveals Escalations) -->
                     <div class="flex flex-col gap-3 flex-1 text-left w-full">
-                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-blue-500">
+                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-blue-500" data-phone-tab="discharges">
                             <div class="flex items-center justify-between mb-1.5">
                                 <div class="flex items-center gap-2">
                                     <i class="fa-solid fa-eye text-sky-400 text-base"></i>
@@ -934,7 +1092,7 @@
                             </p>
                         </div>
 
-                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-green-500">
+                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-green-500" data-phone-tab="sos">
                             <div class="flex items-center justify-between mb-1.5">
                                 <div class="flex items-center gap-2">
                                     <i class="fa-solid fa-bolt text-emerald-400 text-base"></i>
@@ -943,11 +1101,11 @@
                                 <span class="text-[9px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-500/10 px-2 py-0.5 rounded">Bedside Presence</span>
                             </div>
                             <p class="text-zinc-300 text-xs leading-relaxed">
-                                <strong class="text-white">Zero Clerical Drag:</strong> Automated logging for callouts, cancellations, and floats. Automated communications for shift reports, VTE reminders, and PACED escalations.
+                                <strong class="text-white">Zero Clerical Drag:</strong> Automated logging for device removals and safety trackers. Direct oversight of central lines, indwelling catheters, and restraints without paper audit binders.
                             </p>
                         </div>
 
-                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-orange-500">
+                        <div class="panel-matte-dark p-3.5 md:p-4 rounded-xl sub-step border-l-4 border-l-orange-500" data-phone-tab="escalations">
                             <div class="flex items-center justify-between mb-1.5">
                                 <div class="flex items-center gap-2">
                                     <i class="fa-solid fa-mobile-screen-button text-orange-400 text-base"></i>
@@ -956,7 +1114,7 @@
                                 <span class="text-[9px] font-bold text-orange-400 uppercase tracking-wider bg-orange-500/10 px-2 py-0.5 rounded">Agile Flow</span>
                             </div>
                             <p class="text-zinc-300 text-xs leading-relaxed">
-                                <strong class="text-white">Point of Care:</strong> Bedside data entry for 2 PM rounds and quality tracking. Agile leader actions for coaching, recognition, and document handling at the bedside.
+                                <strong class="text-white">Point of Care:</strong> Clear segregation of Inpatient and Observation cohorts. Real-time tracking of pending consults, echo results, and stable lab milestones required for same-day discharge.
                             </p>
                         </div>
                     </div>
@@ -1267,21 +1425,22 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto text-left items-center">
+                    <!-- Unified, Clean Negative/Redundancy Indicator Icons Across All Bullets -->
                     <div class="space-y-2.5 font-medium text-zinc-800 text-base md:text-lg">
                         <div class="panel-light p-3 rounded-xl sub-step flex items-center">
-                            <i class="fa-solid fa-xmark text-red-500 mr-3 text-lg"></i> Excel file in the shared drive
+                            <i class="fa-solid fa-circle-xmark text-red-500 mr-3 text-lg"></i> Excel file in the shared drive
                         </div>
                         <div class="panel-light p-3 rounded-xl sub-step flex items-center">
-                            <i class="fa-solid fa-pen text-amber-500 mr-3 text-base"></i> Signed coachings / memos
+                            <i class="fa-solid fa-circle-xmark text-red-500 mr-3 text-lg"></i> Signed coachings / memos
                         </div>
                         <div class="panel-light p-3 rounded-xl sub-step flex items-center">
-                            <i class="fa-solid fa-xmark text-red-500 mr-3 text-lg"></i> Save scanned copies in anecdotal files
+                            <i class="fa-solid fa-circle-xmark text-red-500 mr-3 text-lg"></i> Save scanned copies in anecdotal files
                         </div>
                         <div class="panel-light p-3 rounded-xl sub-step flex items-center">
-                            <i class="fa-solid fa-xmark text-red-500 mr-3 text-lg"></i> Manual shared drive organization
+                            <i class="fa-solid fa-circle-xmark text-red-500 mr-3 text-lg"></i> Manual shared drive organization
                         </div>
                         <div class="panel-light p-3 rounded-xl sub-step flex items-center">
-                            <i class="fa-solid fa-folder-open text-zinc-500 mr-3 text-base"></i> Paper form organized in filling cabinet
+                            <i class="fa-solid fa-circle-xmark text-red-500 mr-3 text-lg"></i> Paper form organized in filing cabinet
                         </div>
                     </div>
 
@@ -1826,7 +1985,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 29: Rigorous Evaluation (CERAMIC WHITE) - ACCURATE TWO-GROUP DESIGN -->
+        <!-- SLIDE 29: Rigorous Evaluation (CERAMIC WHITE) -->
         <section class="slide theme-white">
             <div class="content-width">
                 <div class="text-center mb-7 reveal">
@@ -1869,7 +2028,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 30: Availability Table (PITCH BLACK) - ACCURATE CONTROL VS INTERVENTION -->
+        <!-- SLIDE 30: Availability Table (PITCH BLACK) -->
         <section class="slide theme-black">
             <div class="content-width">
                 <div class="reveal mb-5 text-center">
@@ -1919,7 +2078,7 @@
             </div>
         </section>
 
-        <!-- SLIDE 31: Friction Table (PITCH BLACK) - ACCURATE CONTROL VS INTERVENTION -->
+        <!-- SLIDE 31: Friction Table (PITCH BLACK) -->
         <section class="slide theme-black">
             <div class="content-width">
                 <div class="reveal mb-5 text-center">
@@ -2039,6 +2198,75 @@
                 }
             };
 
+            // Dynamic Tab Switcher for Slide 10 Phone Mockup
+            window.setPhoneView = function(tab) {
+                const viewDischarges = document.getElementById('phone-view-discharges');
+                const viewSos = document.getElementById('phone-view-sos');
+                const viewEscalations = document.getElementById('phone-view-escalations');
+
+                const btnDischarges = document.getElementById('tab-btn-discharges');
+                const btnSos = document.getElementById('tab-btn-sos');
+                const btnEscalations = document.getElementById('tab-btn-escalations');
+
+                if (!viewDischarges || !viewSos || !viewEscalations) return;
+
+                viewDischarges.style.display = 'none';
+                viewSos.style.display = 'none';
+                viewEscalations.style.display = 'none';
+
+                const inactiveStyle = "py-1 text-zinc-400 transition-colors";
+                const activeStyle = "py-1 text-white bg-[#830026] border-b-2 border-white transition-colors";
+
+                if (btnDischarges) btnDischarges.className = inactiveStyle;
+                if (btnSos) btnSos.className = inactiveStyle;
+                if (btnEscalations) btnEscalations.className = inactiveStyle;
+
+                if (tab === 'sos') {
+                    viewSos.style.display = 'flex';
+                    if (btnSos) btnSos.className = activeStyle;
+                } else if (tab === 'escalations') {
+                    viewEscalations.style.display = 'flex';
+                    if (btnEscalations) btnEscalations.className = activeStyle;
+                } else {
+                    viewDischarges.style.display = 'flex';
+                    if (btnDischarges) btnDischarges.className = activeStyle;
+                }
+            };
+
+            // Sub-tab Switcher for Escalations: Inpatient vs Observation
+            window.switchEscalationSubTab = function(subtab) {
+                const subInpatient = document.getElementById('escalation-subview-inpatient');
+                const subObs = document.getElementById('escalation-subview-obs');
+                const btnInpatient = document.getElementById('subtab-inpatient-btn');
+                const btnObs = document.getElementById('subtab-obs-btn');
+
+                if (!subInpatient || !subObs) return;
+
+                if (subtab === 'obs') {
+                    subInpatient.style.display = 'none';
+                    subObs.style.display = 'block';
+                    if (btnObs) btnObs.className = "py-1 rounded bg-[#830026] text-white";
+                    if (btnInpatient) btnInpatient.className = "py-1 rounded text-zinc-400 hover:text-white";
+                } else {
+                    subInpatient.style.display = 'block';
+                    subObs.style.display = 'none';
+                    if (btnInpatient) btnInpatient.className = "py-1 rounded bg-[#830026] text-white";
+                    if (btnObs) btnObs.className = "py-1 rounded text-zinc-400 hover:text-white";
+                }
+            };
+
+            function syncSlide10PhoneTab(activeSlide) {
+                if (!activeSlide || activeSlide.id !== 'slide-features') return;
+                const revealed = activeSlide.querySelectorAll('.sub-step.revealed');
+                if (revealed.length === 0 || revealed.length === 1) {
+                    window.setPhoneView('discharges');
+                } else if (revealed.length === 2) {
+                    window.setPhoneView('sos');
+                } else if (revealed.length >= 3) {
+                    window.setPhoneView('escalations');
+                }
+            }
+
             function startDeck() {
                 const slides = document.querySelectorAll('.slide');
                 const slideCounter = document.getElementById('slide-counter');
@@ -2099,6 +2327,11 @@
                     if (newSlide) {
                         newSlide.classList.add('active');
 
+                        if (newSlide.id === 'slide-features') {
+                            window.setPhoneView('discharges');
+                            window.switchEscalationSubTab('inpatient');
+                        }
+
                         setTimeout(() => {
                             newSlide.querySelectorAll('.race-bar').forEach(b => {
                                 if (!b.closest('.sub-step')) {
@@ -2122,6 +2355,10 @@
                         if (activeSlide.id === 'slide-confession') {
                             const confessionContainer = document.getElementById('confession-container');
                             if (confessionContainer) confessionContainer.classList.add('scaled');
+                        }
+
+                        if (activeSlide.id === 'slide-features') {
+                            syncSlide10PhoneTab(activeSlide);
                         }
 
                         nextStep.querySelectorAll('.race-bar').forEach(b => {
@@ -2150,7 +2387,11 @@
 
                         if (activeSlide.id === 'slide-confession') {
                             const confessionContainer = document.getElementById('confession-container');
-                            if (confessionContainer) confessionContainer.classList.add('scaled');
+                            if (confessionContainer) confessionContainer.classList.remove('scaled');
+                        }
+
+                        if (activeSlide.id === 'slide-features') {
+                            syncSlide10PhoneTab(activeSlide);
                         }
 
                         lastStep.querySelectorAll('.race-bar').forEach(b => {
@@ -2213,7 +2454,6 @@
                     }
                 });
 
-                // Initialize starting state safely
                 initSlide(0);
             }
 
